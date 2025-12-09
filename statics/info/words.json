@@ -1,0 +1,1991 @@
+{
+"words": [
+{
+"id": "1",
+"english": "quality management",
+"chinese": "质量管理",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "2",
+"english": "quality inspection",
+"chinese": "质量检验",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "3",
+"english": "process",
+"chinese": "工序",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "4",
+"english": "contamination",
+"chinese": "污染",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "5",
+"english": "cross-contamination",
+"chinese": "交叉污染",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "6",
+"english": "buildings and facilities",
+"chinese": "厂房与设施",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "7",
+"english": "production environment",
+"chinese": "生产环境",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "8",
+"english": "clean air level",
+"chinese": "空气洁净级别",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "9",
+"english": "insect",
+"chinese": "昆虫",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "10",
+"english": "clean room(area)",
+"chinese": "洁净室（区）",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "11",
+"english": "disinfection",
+"chinese": "消毒",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "12",
+"english": "sterile",
+"chinese": "无菌",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "13",
+"english": "dust accumulation",
+"chinese": "灰尘积聚",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "14",
+"english": "production scale",
+"chinese": "生产规模",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "15",
+"english": "store area",
+"chinese": "储存区",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "16",
+"english": "equipment",
+"chinese": "设备",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "17",
+"english": "material",
+"chinese": "物料",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "18",
+"english": "raw material and incipient",
+"chinese": "原辅料",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "19",
+"english": "intermediate product",
+"chinese": "中间产品",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "20",
+"english": "finished product",
+"chinese": "成品",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "21",
+"english": "quarantined material",
+"chinese": "待验品",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "22",
+"english": "pipeline",
+"chinese": "管道",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "23",
+"english": "utilities of public service",
+"chinese": "公用设施, 公用工程",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "24",
+"english": "lighting",
+"chinese": "照明",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "25",
+"english": "purification",
+"chinese": "净化",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "26",
+"english": "micro-organism",
+"chinese": "微生物",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "27",
+"english": "monitoring",
+"chinese": "监测",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "28",
+"english": "record",
+"chinese": "记录",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "29",
+"english": "seal",
+"chinese": "密封",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "30",
+"english": "ceiling",
+"chinese": "天花板",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "31",
+"english": "temperature",
+"chinese": "温度",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "32",
+"english": "RH: Relative Humidity",
+"chinese": "相对湿度",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "33",
+"english": "floor drain",
+"chinese": "地漏",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "34",
+"english": "distribution room",
+"chinese": "分装室",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "35",
+"english": "package",
+"chinese": "包装",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "36",
+"english": "bacteria",
+"chinese": "细菌",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "37",
+"english": "pretreatment",
+"chinese": "前处理",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "38",
+"english": "ventilation",
+"chinese": "通风",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "39",
+"english": "Sampling",
+"chinese": "取样",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "40",
+"english": "weighing room",
+"chinese": "称量室",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "41",
+"english": "verification",
+"chinese": "检定 验证",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "42",
+"english": "PW: Purified Water",
+"chinese": "纯化水",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "43",
+"english": "tank",
+"chinese": "储罐",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "44",
+"english": "measuring tool",
+"chinese": "量具",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "45",
+"english": "weighing instrument",
+"chinese": "衡器",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "46",
+"english": "maintenance",
+"chinese": "维修、保养",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "47",
+"english": "disqualified, reject, non-conforming",
+"chinese": "不合格",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "48",
+"english": "purchasing",
+"chinese": "购买",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "49",
+"english": "releasing",
+"chinese": "发放",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "50",
+"english": "loading",
+"chinese": "入库",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "51",
+"english": "solid",
+"chinese": "固体",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "52",
+"english": "liquid",
+"chinese": "液体",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "53",
+"english": "acceptance",
+"chinese": "验收",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "54",
+"english": "combustible",
+"chinese": "易燃",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "55",
+"english": "explosive",
+"chinese": "易爆",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "56",
+"english": "instruction",
+"chinese": "使用说明书",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "57",
+"english": "label",
+"chinese": "标签",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "58",
+"english": "sanitation",
+"chinese": "卫生, 清洁/消毒",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "59",
+"english": "workshop",
+"chinese": "车间",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "60",
+"english": "time interval",
+"chinese": "间隔时间",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "61",
+"english": "detergent",
+"chinese": "清洁剂",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "62",
+"english": "disinfectant",
+"chinese": "消毒剂",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "63",
+"english": "wastes",
+"chinese": "废弃物",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "64",
+"english": "changing room",
+"chinese": "更衣室",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "65",
+"english": "work clothes",
+"chinese": "工作服",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "66",
+"english": "verification, validation",
+"chinese": "验证",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "67",
+"english": "qualification",
+"chinese": "确认",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "68",
+"english": "installation",
+"chinese": "安装",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "69",
+"english": "running operation",
+"chinese": "运行",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "70",
+"english": "document",
+"chinese": "文件",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "71",
+"english": "complaint",
+"chinese": "投诉",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "72",
+"english": "product name",
+"chinese": "品名",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "73",
+"english": "container",
+"chinese": "容器",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "74",
+"english": "application",
+"chinese": "申请",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "75",
+"english": "stability",
+"chinese": "稳定性",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "76",
+"english": "draft",
+"chinese": "起草",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "77",
+"english": "production management",
+"chinese": "生产管理",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "78",
+"english": "certificate",
+"chinese": "合格证",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "79",
+"english": "clearance",
+"chinese": "清场",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "80",
+"english": "internal control",
+"chinese": "内控",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "81",
+"english": "validity, expiry date, shelf life",
+"chinese": "有效期",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "82",
+"english": "product sales and recall",
+"chinese": "产品销售与召回",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "83",
+"english": "complaints",
+"chinese": "投诉",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "84",
+"english": "self-inspection",
+"chinese": "自检",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "85",
+"english": "balance",
+"chinese": "平衡、天平",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "86",
+"english": "drinking water",
+"chinese": "饮用水",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "87",
+"english": "batch",
+"chinese": "批",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "88",
+"english": "batch number",
+"chinese": "批号",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "89",
+"english": "in-process control",
+"chinese": "中控",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "90",
+"english": "Theoretical yield",
+"chinese": "理论产量",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "91",
+"english": "Actual yield",
+"chinese": "实际产量",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "92",
+"english": "rate",
+"chinese": "比率",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "93",
+"english": "Acceptance criteria",
+"chinese": "验收标准可接受标准",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "94",
+"english": "contaminant",
+"chinese": "污染物",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "95",
+"english": "preparation",
+"chinese": "制备",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "96",
+"english": "blend",
+"chinese": "混合",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "97",
+"english": "processing",
+"chinese": "加工",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "98",
+"english": "concentration",
+"chinese": "浓度",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "99",
+"english": "purity",
+"chinese": "纯度",
+"category": "常用词语",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "100",
+"english": "CMC",
+"chinese": "化学、制造与控制",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "101",
+"english": "Synthetic Route",
+"chinese": "合成路线",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "102",
+"english": "Process Chemistry",
+"chinese": "工艺化学",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "103",
+"english": "Process Optimization / Scale-up",
+"chinese": "工艺优化/放大",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "104",
+"english": "Starting Material",
+"chinese": "起始物料",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "105",
+"english": "Intermediate",
+"chinese": "中间体",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "106",
+"english": "Reaction",
+"chinese": "反应",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "107",
+"english": "Crystallization",
+"chinese": "结晶",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "108",
+"english": "Purification",
+"chinese": "纯化",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "109",
+"english": "Yield",
+"chinese": "收率",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "110",
+"english": "Specification",
+"chinese": "质量标准",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "111",
+"english": "Impurity",
+"chinese": "杂质",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "112",
+"english": "Polymorph",
+"chinese": "晶型",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "113",
+"english": "Particle Size",
+"chinese": "粒径",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "114",
+"english": "Process Validation",
+"chinese": "工艺验证",
+"category": "研发与工艺",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "115",
+"english": "QC / QA",
+"chinese": "质量控制/质量保证",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "116",
+"english": "Analytical Method",
+"chinese": "分析方法",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "117",
+"english": "HPLC/UPLC",
+"chinese": "高效/超高效液相色谱",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "118",
+"english": "GC",
+"chinese": "气相色谱",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "119",
+"english": "MS",
+"chinese": "质谱",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "120",
+"english": "NMR",
+"chinese": "核磁共振",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "121",
+"english": "IR / FTIR",
+"chinese": "红外/傅里叶变换红外光谱",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "122",
+"english": "UV-Vis",
+"chinese": "紫外-可见分光光度法",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "123",
+"english": "Titration",
+"chinese": "滴定",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "124",
+"english": "Assay",
+"chinese": "含量测定",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "125",
+"english": "Related Substances",
+"chinese": "有关物质",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "126",
+"english": "Residual Solvent",
+"chinese": "残留溶剂",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "127",
+"english": "Heavy Metals",
+"chinese": "重金属",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "128",
+"english": "Microbiology",
+"chinese": "微生物学",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "129",
+"english": "Reference Standard",
+"chinese": "对照品",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "130",
+"english": "Calibration",
+"chinese": "校准",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "131",
+"english": "OOS / OOT",
+"chinese": "超标/超趋势结果",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "132",
+"english": "Stability Study",
+"chinese": "稳定性研究",
+"category": "分析检测与质量控制",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "133",
+"english": "Quality Department Hall",
+"chinese": "质量部大厅",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "134",
+"english": "Quality Analysis Room",
+"chinese": "质量部分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "135",
+"english": "Backup Power/Power Distribution Room",
+"chinese": "备用电源/配电室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "136",
+"english": "Sampling Room",
+"chinese": "样品接收室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "137",
+"english": "Glassware room",
+"chinese": "玻璃器皿室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "138",
+"english": "Balance Room I",
+"chinese": "天平室I",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "139",
+"english": "Distribution cabinet",
+"chinese": "配电柜",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "140",
+"english": "Sample preparation Room",
+"chinese": "配样室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "141",
+"english": "HPLC Room",
+"chinese": "液相分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "142",
+"english": "High Temperature Room",
+"chinese": "高温室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "143",
+"english": "Comprehensive Instrument Room",
+"chinese": "综合仪器室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "144",
+"english": "IR Room",
+"chinese": "红外分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "145",
+"english": "Moisture Measurement Room",
+"chinese": "水分分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "146",
+"english": "Balance Room",
+"chinese": "天平室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "147",
+"english": "GC Room",
+"chinese": "气相分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "148",
+"english": "Physicochemical Analysis Room",
+"chinese": "理化室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "149",
+"english": "Locker Room",
+"chinese": "更衣室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "150",
+"english": "Source gas Room",
+"chinese": "气源室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "151",
+"english": "QC office",
+"chinese": "QC办公室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "152",
+"english": "Vice president's office",
+"chinese": "副总办公室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "153",
+"english": "Director's office",
+"chinese": "总监办公室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "154",
+"english": "Glove box Room",
+"chinese": "手套箱室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "155",
+"english": "Mother and child Rooms",
+"chinese": "母婴室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "156",
+"english": "Power Distribution Room",
+"chinese": "配电室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "157",
+"english": "Psychz",
+"chinese": "机房",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "158",
+"english": "Storage room",
+"chinese": "储物间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "159",
+"english": "Cleaning Tools Room",
+"chinese": "洁具间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "160",
+"english": "Generator Room",
+"chinese": "发电机房",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "161",
+"english": "Pantry Room",
+"chinese": "茶水间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "162",
+"english": "Dressing Room",
+"chinese": "访客更衣室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "163",
+"english": "Men's room",
+"chinese": "男卫生间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "164",
+"english": "Staircase",
+"chinese": "楼梯间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "165",
+"english": "R&D Laboratory",
+"chinese": "实验室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "166",
+"english": "Magnification Stage Laboratory",
+"chinese": "公斤级实验室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "167",
+"english": "Standard/reference substance Room",
+"chinese": "标准/对照品室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "168",
+"english": "Storage room for consumables",
+"chinese": "耗材存放间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "169",
+"english": "Reagent Room",
+"chinese": "试剂间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "170",
+"english": "IT Server",
+"chinese": "网络服务器",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "171",
+"english": "Titration analysis Room",
+"chinese": "滴定分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "172",
+"english": "Cool storage Room",
+"chinese": "阴凉暂存间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "173",
+"english": "Sample Retention Room",
+"chinese": "留样室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "174",
+"english": "Microbiological Lab",
+"chinese": "微生物实验室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "175",
+"english": "Shoes Changing Room",
+"chinese": "换鞋室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "176",
+"english": "Negative Gowning Room I",
+"chinese": "阴性一更",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "177",
+"english": "Negative Gowning Room II",
+"chinese": "阴性二更",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "178",
+"english": "Negative disinfection Room",
+"chinese": "阴性消毒室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "179",
+"english": "Buffer Room",
+"chinese": "缓冲间",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "180",
+"english": "Micro.Testing Room",
+"chinese": "微生物检测",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "181",
+"english": "Positive Gowning Room I",
+"chinese": "阳性一更",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "182",
+"english": "Positive disinfection Room",
+"chinese": "阳性消毒室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "183",
+"english": "Positive bacterial Room",
+"chinese": "阳性菌室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "184",
+"english": "Preparation Room",
+"chinese": "准备室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "185",
+"english": "Incubation Room",
+"chinese": "培养室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "186",
+"english": "Culture medium/strain storage Room",
+"chinese": "培养基/菌种存放室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "187",
+"english": "Sterilizing Room",
+"chinese": "灭菌室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "188",
+"english": "Instrument/Consumables Storage Room",
+"chinese": "仪器/耗材存放室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "189",
+"english": "Microbiology office",
+"chinese": "微生物办公室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "190",
+"english": "Stability Lab",
+"chinese": "稳定性实验室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "191",
+"english": "Meeting Room",
+"chinese": "会议室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "192",
+"english": "QA office",
+"chinese": "QA办公室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "193",
+"english": "Archives",
+"chinese": "档案室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "194",
+"english": "R&D Analysis Room",
+"chinese": "研发分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "195",
+"english": "Source gas/mechanical pump room",
+"chinese": "气源/机械泵室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "196",
+"english": "PSD Room",
+"chinese": "PSD分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "197",
+"english": "ICP-MS Room",
+"chinese": "ICP-MS分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "198",
+"english": "XRD Room",
+"chinese": "XRD分析室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "199",
+"english": "Drying Room",
+"chinese": "烘箱室",
+"category": "设施与区域",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "200",
+"english": "Reactors",
+"chinese": "反应釜",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "201",
+"english": "Centrifuge",
+"chinese": "离心机",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "202",
+"english": "Filter / Dryer",
+"chinese": "过滤器/干燥器",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "203",
+"english": "Milling",
+"chinese": "粉碎",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "204",
+"english": "Blending / Mixing",
+"chinese": "混合",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "205",
+"english": "Purified Water / WFI",
+"chinese": "纯化水/注射用水",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "206",
+"english": "Clean Utilities",
+"chinese": "洁净公用系统",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "207",
+"english": "HVAC",
+"chinese": "暖通空调系统",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "208",
+"english": "Cleaning Validation",
+"chinese": "清洁验证",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "209",
+"english": "Batch Record (MBR/EBR)",
+"chinese": "批生产记录",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "210",
+"english": "In-process Control",
+"chinese": "中间控制",
+"category": "生产与设备",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "211",
+"english": "GMP / cGMP",
+"chinese": "(现行)药品生产质量管理规范",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "212",
+"english": "SOP",
+"chinese": "标准操作规程",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "213",
+"english": "Documentation / Record",
+"chinese": "文件/记录",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "214",
+"english": "Deviation",
+"chinese": "偏差",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "215",
+"english": "CAPA",
+"chinese": "纠正与预防措施",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "216",
+"english": "Change Control",
+"chinese": "变更控制",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "217",
+"english": "Audit / Inspection",
+"chinese": "审计/检查",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "218",
+"english": "Qualification / Validation",
+"chinese": "确认/验证",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "219",
+"english": "Compliance",
+"chinese": "合规",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "220",
+"english": "Quality Metrics",
+"chinese": "质量指标",
+"category": "质量体系与GMP",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "221",
+"english": "ICH Guidelines",
+"chinese": "ICH指导原则",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "222",
+"english": "Pharmacopoeia",
+"chinese": "药典",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "223",
+"english": "EDMF / ASMF",
+"chinese": "欧洲药物主文件/活性物质主文件",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "224",
+"english": "DMF",
+"chinese": "药物主文件",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "225",
+"english": "CEP",
+"chinese": "欧洲药典适应性证书",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "226",
+"english": "Regulatory Submission",
+"chinese": "注册申报",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "227",
+"english": "GMP Certificate",
+"chinese": "GMP证书",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "228",
+"english": "Audit Trail",
+"chinese": "审计追踪",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "229",
+"english": "Data Integrity",
+"chinese": "数据完整性",
+"category": "法规与注册",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "230",
+"english": "EHS",
+"chinese": "环境、健康与安全",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "231",
+"english": "HSE",
+"chinese": "健康、安全与环境",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "232",
+"english": "MSDS / SDS",
+"chinese": "物料安全数据表",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "233",
+"english": "Hazard / Risk Assessment",
+"chinese": "危害/风险评估",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "234",
+"english": "Waste Treatment",
+"chinese": "废物处理",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "235",
+"english": "Supply Chain",
+"chinese": "供应链",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "236",
+"english": "Vendor / Supplier",
+"chinese": "供应商",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "237",
+"english": "Raw Material",
+"chinese": "原材料",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "238",
+"english": "Packaging Material",
+"chinese": "包装材料",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "239",
+"english": "Logistics",
+"chinese": "物流",
+"category": "EHS与供应链",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "240",
+"english": "API",
+"chinese": "活性药物成分",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "241",
+"english": "Drug Substance",
+"chinese": "原料药",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "242",
+"english": "COA",
+"chinese": "质量检验报告",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "243",
+"english": "COC",
+"chinese": "符合性证明",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "244",
+"english": "Batch Number / Lot Number",
+"chinese": "批号",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "245",
+"english": "Expiry Date / Retest Date",
+"chinese": "有效期/复验期",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "246",
+"english": "Quarantine / Release",
+"chinese": "待检/放行",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+},
+{
+"id": "247",
+"english": "Traceability",
+"chinese": "可追溯性",
+"category": "综合管理",
+"pronunciation": "",
+"favorite": false
+}
+],
+"categories": [
+"常用词语",
+"研发与工艺",
+"分析检测与质量控制",
+"设施与区域",
+"生产与设备",
+"质量体系与GMP",
+"法规与注册",
+"EHS与供应链",
+"综合管理"
+]
+}
