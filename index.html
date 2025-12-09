@@ -627,6 +627,34 @@
         .review-favorites-btn {
             margin-top: 10px;
         }
+        
+        /* 系统术语标签 */
+        .system-tag {
+            font-size: 0.6rem;
+            color: var(--secondary-color);
+            margin-left: 4px;
+            padding: 1px 3px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 3px;
+        }
+        
+        /* 用户术语标签 */
+        .user-tag {
+            font-size: 0.6rem;
+            color: var(--accent-color);
+            margin-left: 4px;
+            padding: 1px 3px;
+            background-color: rgba(39, 174, 96, 0.1);
+            border-radius: 3px;
+        }
+        
+        /* 管理按钮组 */
+        .management-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -690,7 +718,7 @@
                             <option value="生产与设备">生产与设备</option>
                             <option value="质量体系与GMP">质量体系与GMP</option>
                             <option value="法规与注册">法规与注册</option>
-                            <option value="EHS与供应链">EHS与供应商</option>
+                            <option value="EHS与供应链">EHS与供应链</option>
                             <option value="综合管理">综合管理</option>
                         </select>
                     </div>
@@ -706,6 +734,37 @@
                     <button id="add-word-btn" class="btn btn-primary">
                         <i class="fas fa-save"></i> 保存术语
                     </button>
+                    
+                    <!-- 术语库管理区域 -->
+                    <div style="margin-top: 15px; border-top: 1px dashed #eee; padding-top: 10px;">
+                        <div class="card-title" style="margin-bottom: 10px;">
+                            <i class="fas fa-database"></i> 术语库管理
+                        </div>
+                        
+                        <div class="management-buttons">
+                            <button id="update-system-btn" class="btn btn-success btn-sm">
+                                <i class="fas fa-sync-alt"></i> 更新系统术语
+                            </button>
+                            <button id="export-user-btn" class="btn btn-primary btn-sm">
+                                <i class="fas fa-download"></i> 导出自定义术语
+                            </button>
+                            <button id="import-user-btn" class="btn btn-warning btn-sm">
+                                <i class="fas fa-upload"></i> 导入自定义术语
+                            </button>
+                            <button id="reset-system-btn" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> 清空系统术语
+                            </button>
+                        </div>
+                        
+                        <div class="hint" style="margin-top: 10px;">
+                            <div class="hint-title">
+                                <i class="fas fa-info-circle"></i> 管理说明
+                            </div>
+                            <p>• <strong>更新系统术语</strong>: 更新预置术语，保留您的自定义术语</p>
+                            <p>• <strong>导出/导入</strong>: 备份或恢复您的自定义术语</p>
+                            <p>• <strong>清空系统术语</strong>: 只保留您添加的术语</p>
+                        </div>
+                    </div>
                     
                     <div class="hint" style="margin-top: 10px;">
                         <div class="hint-title">
@@ -734,7 +793,7 @@
                         <button class="category-btn" data-category="生产与设备">生产设备</button>
                         <button class="category-btn" data-category="质量体系与GMP">质量体系</button>
                         <button class="category-btn" data-category="法规与注册">法规注册</button>
-                        <button class="category-btn" data-category="EHS与供应链">EHS供应商</button>
+                        <button class="category-btn" data-category="EHS与供应链">EHS供应链</button>
                         <button class="category-btn" data-category="综合管理">综合管理</button>
                         <button class="category-btn" data-category="favorites">已收藏</button>
                     </div>
@@ -881,269 +940,269 @@
         // 制药行业词汇数据 - 按照分类整理，确保每个单词都有完整的字段
         const pharmaceuticalTerms = [
             // 常用词语 (1-99)
-            { english: "quality management", chinese: "质量管理", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "quality inspection", chinese: "质量检验", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "process", chinese: "工序", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "contamination", chinese: "污染", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "cross-contamination", chinese: "交叉污染", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "buildings and facilities", chinese: "厂房与设施", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "production environment", chinese: "生产环境", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "clean air level", chinese: "空气洁净级别", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "insect", chinese: "昆虫", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "clean room(area)", chinese: "洁净室（区）", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "disinfection", chinese: "消毒", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "sterile", chinese: "无菌", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "dust accumulation", chinese: "灰尘积聚", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "production scale", chinese: "生产规模", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "store area", chinese: "储存区", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "equipment", chinese: "设备", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "material", chinese: "物料", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "raw material and incipient", chinese: "原辅料", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "intermediate product", chinese: "中间产品", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "finished product", chinese: "成品", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "quarantined material", chinese: "待验品", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "pipeline", chinese: "管道", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "utilities of public service", chinese: "公用设施, 公用工程", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "lighting", chinese: "照明", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "purification", chinese: "净化", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "micro-organism", chinese: "微生物", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "monitoring", chinese: "监测", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "record", chinese: "记录", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "seal", chinese: "密封", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "ceiling", chinese: "天花板", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "temperature", chinese: "温度", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "RH: Relative Humidity", chinese: "相对湿度", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "floor drain", chinese: "地漏", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "distribution room", chinese: "分装室", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "package", chinese: "包装", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "bacteria", chinese: "细菌", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "pretreatment", chinese: "前处理", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "ventilation", chinese: "通风", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "Sampling", chinese: "取样", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "weighing room", chinese: "称量室", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "verification", chinese: "检定 验证", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "PW: Purified Water", chinese: "纯化水", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "tank", chinese: "储罐", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "measuring tool", chinese: "量具", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "weighing instrument", chinese: "衡器", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "maintenance", chinese: "维修、保养", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "disqualified, reject, non-conforming", chinese: "不合格", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "purchasing", chinese: "购买", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "releasing", chinese: "发放", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "loading", chinese: "入库", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "solid", chinese: "固体", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "liquid", chinese: "液体", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "acceptance", chinese: "验收", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "combustible", chinese: "易燃", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "explosive", chinese: "易爆", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "instruction", chinese: "使用说明书", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "label", chinese: "标签", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "sanitation", chinese: "卫生, 清洁/消毒", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "workshop", chinese: "车间", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "time interval", chinese: "间隔时间", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "detergent", chinese: "清洁剂", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "disinfectant", chinese: "消毒剂", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "wastes", chinese: "废弃物", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "changing room", chinese: "更衣室", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "work clothes", chinese: "工作服", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "verification, validation", chinese: "验证", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "qualification", chinese: "确认", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "installation", chinese: "安装", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "running operation", chinese: "运行", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "document", chinese: "文件", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "complaint", chinese: "投诉", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "product name", chinese: "品名", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "container", chinese: "容器", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "application", chinese: "申请", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "stability", chinese: "稳定性", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "draft", chinese: "起草", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "production management", chinese: "生产管理", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "certificate", chinese: "合格证", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "clearance", chinese: "清场", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "internal control", chinese: "内控", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "validity, expiry date, shelf life", chinese: "有效期", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "product sales and recall", chinese: "产品销售与召回", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "complaints", chinese: "投诉", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "self-inspection", chinese: "自检", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "balance", chinese: "平衡、天平", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "drinking water", chinese: "饮用水", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "batch", chinese: "批", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "batch number", chinese: "批号", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "in-process control", chinese: "中控", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "Theoretical yield", chinese: "理论产量", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "Actual yield", chinese: "实际产量", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "rate", chinese: "比率", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "Acceptance criteria", chinese: "验收标准可接受标准", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "contaminant", chinese: "污染物", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "preparation", chinese: "制备", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "blend", chinese: "混合", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "processing", chinese: "加工", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "concentration", chinese: "浓度", category: "常用词语", example: "", practiceCount: 0, favorite: false },
-            { english: "purity", chinese: "纯度", category: "常用词语", example: "", practiceCount: 0, favorite: false },
+            { english: "quality management", chinese: "质量管理", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_001" },
+            { english: "quality inspection", chinese: "质量检验", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_002" },
+            { english: "process", chinese: "工序", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_003" },
+            { english: "contamination", chinese: "污染", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_004" },
+            { english: "cross-contamination", chinese: "交叉污染", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_005" },
+            { english: "buildings and facilities", chinese: "厂房与设施", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_006" },
+            { english: "production environment", chinese: "生产环境", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_007" },
+            { english: "clean air level", chinese: "空气洁净级别", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_008" },
+            { english: "insect", chinese: "昆虫", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_009" },
+            { english: "clean room(area)", chinese: "洁净室（区）", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_010" },
+            { english: "disinfection", chinese: "消毒", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_011" },
+            { english: "sterile", chinese: "无菌", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_012" },
+            { english: "dust accumulation", chinese: "灰尘积聚", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_013" },
+            { english: "production scale", chinese: "生产规模", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_014" },
+            { english: "store area", chinese: "储存区", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_015" },
+            { english: "equipment", chinese: "设备", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_016" },
+            { english: "material", chinese: "物料", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_017" },
+            { english: "raw material and incipient", chinese: "原辅料", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_018" },
+            { english: "intermediate product", chinese: "中间产品", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_019" },
+            { english: "finished product", chinese: "成品", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_020" },
+            { english: "quarantined material", chinese: "待验品", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_021" },
+            { english: "pipeline", chinese: "管道", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_022" },
+            { english: "utilities of public service", chinese: "公用设施, 公用工程", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_023" },
+            { english: "lighting", chinese: "照明", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_024" },
+            { english: "purification", chinese: "净化", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_025" },
+            { english: "micro-organism", chinese: "微生物", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_026" },
+            { english: "monitoring", chinese: "监测", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_027" },
+            { english: "record", chinese: "记录", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_028" },
+            { english: "seal", chinese: "密封", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_029" },
+            { english: "ceiling", chinese: "天花板", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_030" },
+            { english: "temperature", chinese: "温度", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_031" },
+            { english: "RH: Relative Humidity", chinese: "相对湿度", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_032" },
+            { english: "floor drain", chinese: "地漏", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_033" },
+            { english: "distribution room", chinese: "分装室", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_034" },
+            { english: "package", chinese: "包装", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_035" },
+            { english: "bacteria", chinese: "细菌", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_036" },
+            { english: "pretreatment", chinese: "前处理", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_037" },
+            { english: "ventilation", chinese: "通风", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_038" },
+            { english: "Sampling", chinese: "取样", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_039" },
+            { english: "weighing room", chinese: "称量室", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_040" },
+            { english: "verification", chinese: "检定 验证", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_041" },
+            { english: "PW: Purified Water", chinese: "纯化水", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_042" },
+            { english: "tank", chinese: "储罐", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_043" },
+            { english: "measuring tool", chinese: "量具", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_044" },
+            { english: "weighing instrument", chinese: "衡器", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_045" },
+            { english: "maintenance", chinese: "维修、保养", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_046" },
+            { english: "disqualified, reject, non-conforming", chinese: "不合格", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_047" },
+            { english: "purchasing", chinese: "购买", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_048" },
+            { english: "releasing", chinese: "发放", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_049" },
+            { english: "loading", chinese: "入库", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_050" },
+            { english: "solid", chinese: "固体", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_051" },
+            { english: "liquid", chinese: "液体", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_052" },
+            { english: "acceptance", chinese: "验收", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_053" },
+            { english: "combustible", chinese: "易燃", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_054" },
+            { english: "explosive", chinese: "易爆", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_055" },
+            { english: "instruction", chinese: "使用说明书", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_056" },
+            { english: "label", chinese: "标签", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_057" },
+            { english: "sanitation", chinese: "卫生, 清洁/消毒", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_058" },
+            { english: "workshop", chinese: "车间", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_059" },
+            { english: "time interval", chinese: "间隔时间", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_060" },
+            { english: "detergent", chinese: "清洁剂", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_061" },
+            { english: "disinfectant", chinese: "消毒剂", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_062" },
+            { english: "wastes", chinese: "废弃物", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_063" },
+            { english: "changing room", chinese: "更衣室", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_064" },
+            { english: "work clothes", chinese: "工作服", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_065" },
+            { english: "verification, validation", chinese: "验证", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_066" },
+            { english: "qualification", chinese: "确认", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_067" },
+            { english: "installation", chinese: "安装", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_068" },
+            { english: "running operation", chinese: "运行", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_069" },
+            { english: "document", chinese: "文件", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_070" },
+            { english: "complaint", chinese: "投诉", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_071" },
+            { english: "product name", chinese: "品名", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_072" },
+            { english: "container", chinese: "容器", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_073" },
+            { english: "application", chinese: "申请", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_074" },
+            { english: "stability", chinese: "稳定性", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_075" },
+            { english: "draft", chinese: "起草", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_076" },
+            { english: "production management", chinese: "生产管理", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_077" },
+            { english: "certificate", chinese: "合格证", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_078" },
+            { english: "clearance", chinese: "清场", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_079" },
+            { english: "internal control", chinese: "内控", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_080" },
+            { english: "validity, expiry date, shelf life", chinese: "有效期", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_081" },
+            { english: "product sales and recall", chinese: "产品销售与召回", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_082" },
+            { english: "complaints", chinese: "投诉", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_083" },
+            { english: "self-inspection", chinese: "自检", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_084" },
+            { english: "balance", chinese: "平衡、天平", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_085" },
+            { english: "drinking water", chinese: "饮用水", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_086" },
+            { english: "batch", chinese: "批", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_087" },
+            { english: "batch number", chinese: "批号", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_088" },
+            { english: "in-process control", chinese: "中控", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_089" },
+            { english: "Theoretical yield", chinese: "理论产量", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_090" },
+            { english: "Actual yield", chinese: "实际产量", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_091" },
+            { english: "rate", chinese: "比率", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_092" },
+            { english: "Acceptance criteria", chinese: "验收标准可接受标准", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_093" },
+            { english: "contaminant", chinese: "污染物", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_094" },
+            { english: "preparation", chinese: "制备", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_095" },
+            { english: "blend", chinese: "混合", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_096" },
+            { english: "processing", chinese: "加工", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_097" },
+            { english: "concentration", chinese: "浓度", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_098" },
+            { english: "purity", chinese: "纯度", category: "常用词语", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_099" },
             
             // 研发与工艺 (100-114)
-            { english: "CMC", chinese: "化学、制造与控制", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Synthetic Route", chinese: "合成路线", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Process Chemistry", chinese: "工艺化学", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Process Optimization / Scale-up", chinese: "工艺优化/放大", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Starting Material", chinese: "起始物料", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Intermediate", chinese: "中间体", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Reaction", chinese: "反应", category: "研发与工艺", example: "如：Hydrogenation 氢化, Condensation 缩合", practiceCount: 0, favorite: false },
-            { english: "Crystallization", chinese: "结晶", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Purification", chinese: "纯化", category: "研发与工艺", example: "如：Recrystallization 重结晶, Distillation 蒸馏", practiceCount: 0, favorite: false },
-            { english: "Yield", chinese: "收率", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Specification", chinese: "质量标准", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Impurity", chinese: "杂质", category: "研发与工艺", example: "Process Impurity 工艺杂质， Degradant 降解物", practiceCount: 0, favorite: false },
-            { english: "Polymorph", chinese: "晶型", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Particle Size", chinese: "粒径", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
-            { english: "Process Validation", chinese: "工艺验证", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
+            { english: "CMC", chinese: "化学、制造与控制", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_100" },
+            { english: "Synthetic Route", chinese: "合成路线", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_101" },
+            { english: "Process Chemistry", chinese: "工艺化学", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_102" },
+            { english: "Process Optimization / Scale-up", chinese: "工艺优化/放大", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_103" },
+            { english: "Starting Material", chinese: "起始物料", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_104" },
+            { english: "Intermediate", chinese: "中间体", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_105" },
+            { english: "Reaction", chinese: "反应", category: "研发与工艺", example: "如：Hydrogenation 氢化, Condensation 缩合", practiceCount: 0, favorite: false, isSystem: true, id: "sys_106" },
+            { english: "Crystallization", chinese: "结晶", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_107" },
+            { english: "Purification", chinese: "纯化", category: "研发与工艺", example: "如：Recrystallization 重结晶, Distillation 蒸馏", practiceCount: 0, favorite: false, isSystem: true, id: "sys_108" },
+            { english: "Yield", chinese: "收率", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_109" },
+            { english: "Specification", chinese: "质量标准", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_110" },
+            { english: "Impurity", chinese: "杂质", category: "研发与工艺", example: "Process Impurity 工艺杂质， Degradant 降解物", practiceCount: 0, favorite: false, isSystem: true, id: "sys_111" },
+            { english: "Polymorph", chinese: "晶型", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_112" },
+            { english: "Particle Size", chinese: "粒径", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_113" },
+            { english: "Process Validation", chinese: "工艺验证", category: "研发与工艺", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_114" },
             
             // 分析检测与质量控制 (115-132)
-            { english: "QC / QA", chinese: "质量控制/质量保证", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Analytical Method", chinese: "分析方法", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "HPLC/UPLC", chinese: "高效/超高效液相色谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "GC", chinese: "气相色谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "MS", chinese: "质谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "NMR", chinese: "核磁共振", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "IR / FTIR", chinese: "红外/傅里叶变换红外光谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "UV-Vis", chinese: "紫外-可见分光光度法", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Titration", chinese: "滴定", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Assay", chinese: "含量测定", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Related Substances", chinese: "有关物质", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Residual Solvent", chinese: "残留溶剂", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Heavy Metals", chinese: "重金属", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Microbiology", chinese: "微生物学", category: "分析检测与质量控制", example: "Endotoxin 内毒素, Bioburden 微生物负载", practiceCount: 0, favorite: false },
-            { english: "Reference Standard", chinese: "对照品", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Calibration", chinese: "校准", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "OOS / OOT", chinese: "超标/超趋势结果", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
-            { english: "Stability Study", chinese: "稳定性研究", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false },
+            { english: "QC / QA", chinese: "质量控制/质量保证", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_115" },
+            { english: "Analytical Method", chinese: "分析方法", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_116" },
+            { english: "HPLC/UPLC", chinese: "高效/超高效液相色谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_117" },
+            { english: "GC", chinese: "气相色谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_118" },
+            { english: "MS", chinese: "质谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_119" },
+            { english: "NMR", chinese: "核磁共振", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_120" },
+            { english: "IR / FTIR", chinese: "红外/傅里叶变换红外光谱", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_121" },
+            { english: "UV-Vis", chinese: "紫外-可见分光光度法", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_122" },
+            { english: "Titration", chinese: "滴定", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_123" },
+            { english: "Assay", chinese: "含量测定", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_124" },
+            { english: "Related Substances", chinese: "有关物质", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_125" },
+            { english: "Residual Solvent", chinese: "残留溶剂", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_126" },
+            { english: "Heavy Metals", chinese: "重金属", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_127" },
+            { english: "Microbiology", chinese: "微生物学", category: "分析检测与质量控制", example: "Endotoxin 内毒素, Bioburden 微生物负载", practiceCount: 0, favorite: false, isSystem: true, id: "sys_128" },
+            { english: "Reference Standard", chinese: "对照品", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_129" },
+            { english: "Calibration", chinese: "校准", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_130" },
+            { english: "OOS / OOT", chinese: "超标/超趋势结果", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_131" },
+            { english: "Stability Study", chinese: "稳定性研究", category: "分析检测与质量控制", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_132" },
             
             // 设施与区域 (133-199)
-            { english: "Quality Department Hall", chinese: "质量部大厅", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Quality Analysis Room", chinese: "质量部分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Backup Power/Power Distribution Room", chinese: "备用电源/配电室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Sampling Room", chinese: "样品接收室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Glassware room", chinese: "玻璃器皿室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Balance Room I", chinese: "天平室I", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Distribution cabinet", chinese: "配电柜", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Sample preparation Room", chinese: "配样室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "HPLC Room", chinese: "液相分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "High Temperature Room", chinese: "高温室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Comprehensive Instrument Room", chinese: "综合仪器室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "IR Room", chinese: "红外分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Moisture Measurement Room", chinese: "水分分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Balance Room", chinese: "天平室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "GC Room", chinese: "气相分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Physicochemical Analysis Room", chinese: "理化室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Locker Room", chinese: "更衣室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Source gas Room", chinese: "气源室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "QC office", chinese: "QC办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Vice president's office", chinese: "副总办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Director's office", chinese: "总监办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Glove box Room", chinese: "手套箱室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Mother and child Rooms", chinese: "母婴室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Power Distribution Room", chinese: "配电室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Psychz", chinese: "机房", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Storage room", chinese: "储物间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Cleaning Tools Room", chinese: "洁具间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Generator Room", chinese: "发电机房", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Pantry Room", chinese: "茶水间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Dressing Room", chinese: "访客更衣室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Men's room", chinese: "男卫生间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Staircase", chinese: "楼梯间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "R&D Laboratory", chinese: "实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Magnification Stage Laboratory", chinese: "公斤级实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Standard/reference substance Room", chinese: "标准/对照品室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Storage room for consumables", chinese: "耗材存放间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Reagent Room", chinese: "试剂间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "IT Server", chinese: "网络服务器", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Titration analysis Room", chinese: "滴定分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Cool storage Room", chinese: "阴凉暂存间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Sample Retention Room", chinese: "留样室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Microbiological Lab", chinese: "微生物实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Shoes Changing Room", chinese: "换鞋室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Negative Gowning Room I", chinese: "阴性一更", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Negative Gowning Room II", chinese: "阴性二更", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Negative disinfection Room", chinese: "阴性消毒室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Buffer Room", chinese: "缓冲间", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Micro.Testing Room", chinese: "微生物检测", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Positive Gowning Room I", chinese: "阳性一更", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Positive disinfection Room", chinese: "阳性消毒室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Positive bacterial Room", chinese: "阳性菌室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Preparation Room", chinese: "准备室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Incubation Room", chinese: "培养室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Culture medium/strain storage Room", chinese: "培养基/菌种存放室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Sterilizing Room", chinese: "灭菌室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Instrument/Consumables Storage Room", chinese: "仪器/耗材存放室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Microbiology office", chinese: "微生物办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Stability Lab", chinese: "稳定性实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Meeting Room", chinese: "会议室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "QA office", chinese: "QA办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Archives", chinese: "档案室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "R&D Analysis Room", chinese: "研发分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Source gas/mechanical pump room", chinese: "气源/机械泵室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "PSD Room", chinese: "PSD分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "ICP-MS Room", chinese: "ICP-MS分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "XRD Room", chinese: "XRD分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
-            { english: "Drying Room", chinese: "烘箱室", category: "设施与区域", example: "", practiceCount: 0, favorite: false },
+            { english: "Quality Department Hall", chinese: "质量部大厅", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_133" },
+            { english: "Quality Analysis Room", chinese: "质量部分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_134" },
+            { english: "Backup Power/Power Distribution Room", chinese: "备用电源/配电室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_135" },
+            { english: "Sampling Room", chinese: "样品接收室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_136" },
+            { english: "Glassware room", chinese: "玻璃器皿室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_137" },
+            { english: "Balance Room I", chinese: "天平室I", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_138" },
+            { english: "Distribution cabinet", chinese: "配电柜", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_139" },
+            { english: "Sample preparation Room", chinese: "配样室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_140" },
+            { english: "HPLC Room", chinese: "液相分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_141" },
+            { english: "High Temperature Room", chinese: "高温室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_142" },
+            { english: "Comprehensive Instrument Room", chinese: "综合仪器室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_143" },
+            { english: "IR Room", chinese: "红外分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_144" },
+            { english: "Moisture Measurement Room", chinese: "水分分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_145" },
+            { english: "Balance Room", chinese: "天平室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_146" },
+            { english: "GC Room", chinese: "气相分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_147" },
+            { english: "Physicochemical Analysis Room", chinese: "理化室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_148" },
+            { english: "Locker Room", chinese: "更衣室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_149" },
+            { english: "Source gas Room", chinese: "气源室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_150" },
+            { english: "QC office", chinese: "QC办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_151" },
+            { english: "Vice president's office", chinese: "副总办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_152" },
+            { english: "Director's office", chinese: "总监办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_153" },
+            { english: "Glove box Room", chinese: "手套箱室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_154" },
+            { english: "Mother and child Rooms", chinese: "母婴室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_155" },
+            { english: "Power Distribution Room", chinese: "配电室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_156" },
+            { english: "Psychz", chinese: "机房", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_157" },
+            { english: "Storage room", chinese: "储物间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_158" },
+            { english: "Cleaning Tools Room", chinese: "洁具间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_159" },
+            { english: "Generator Room", chinese: "发电机房", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_160" },
+            { english: "Pantry Room", chinese: "茶水间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_161" },
+            { english: "Dressing Room", chinese: "访客更衣室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_162" },
+            { english: "Men's room", chinese: "男卫生间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_163" },
+            { english: "Staircase", chinese: "楼梯间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_164" },
+            { english: "R&D Laboratory", chinese: "实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_165" },
+            { english: "Magnification Stage Laboratory", chinese: "公斤级实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_166" },
+            { english: "Standard/reference substance Room", chinese: "标准/对照品室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_167" },
+            { english: "Storage room for consumables", chinese: "耗材存放间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_168" },
+            { english: "Reagent Room", chinese: "试剂间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_169" },
+            { english: "IT Server", chinese: "网络服务器", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_170" },
+            { english: "Titration analysis Room", chinese: "滴定分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_171" },
+            { english: "Cool storage Room", chinese: "阴凉暂存间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_172" },
+            { english: "Sample Retention Room", chinese: "留样室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_173" },
+            { english: "Microbiological Lab", chinese: "微生物实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_174" },
+            { english: "Shoes Changing Room", chinese: "换鞋室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_175" },
+            { english: "Negative Gowning Room I", chinese: "阴性一更", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_176" },
+            { english: "Negative Gowning Room II", chinese: "阴性二更", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_177" },
+            { english: "Negative disinfection Room", chinese: "阴性消毒室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_178" },
+            { english: "Buffer Room", chinese: "缓冲间", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_179" },
+            { english: "Micro.Testing Room", chinese: "微生物检测", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_180" },
+            { english: "Positive Gowning Room I", chinese: "阳性一更", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_181" },
+            { english: "Positive disinfection Room", chinese: "阳性消毒室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_182" },
+            { english: "Positive bacterial Room", chinese: "阳性菌室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_183" },
+            { english: "Preparation Room", chinese: "准备室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_184" },
+            { english: "Incubation Room", chinese: "培养室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_185" },
+            { english: "Culture medium/strain storage Room", chinese: "培养基/菌种存放室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_186" },
+            { english: "Sterilizing Room", chinese: "灭菌室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_187" },
+            { english: "Instrument/Consumables Storage Room", chinese: "仪器/耗材存放室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_188" },
+            { english: "Microbiology office", chinese: "微生物办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_189" },
+            { english: "Stability Lab", chinese: "稳定性实验室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_190" },
+            { english: "Meeting Room", chinese: "会议室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_191" },
+            { english: "QA office", chinese: "QA办公室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_192" },
+            { english: "Archives", chinese: "档案室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_193" },
+            { english: "R&D Analysis Room", chinese: "研发分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_194" },
+            { english: "Source gas/mechanical pump room", chinese: "气源/机械泵室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_195" },
+            { english: "PSD Room", chinese: "PSD分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_196" },
+            { english: "ICP-MS Room", chinese: "ICP-MS分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_197" },
+            { english: "XRD Room", chinese: "XRD分析室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_198" },
+            { english: "Drying Room", chinese: "烘箱室", category: "设施与区域", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_199" },
             
             // 生产与设备 (200-210)
-            { english: "Reactors", chinese: "反应釜", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
-            { english: "Centrifuge", chinese: "离心机", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
-            { english: "Filter / Dryer", chinese: "过滤器/干燥器", category: "生产与设备", example: "如：Tray Dryer 盘式干燥， FBD 流化床干燥", practiceCount: 0, favorite: false },
-            { english: "Milling", chinese: "粉碎", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
-            { english: "Blending / Mixing", chinese: "混合", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
-            { english: "Purified Water / WFI", chinese: "纯化水/注射用水", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
-            { english: "Clean Utilities", chinese: "洁净公用系统", category: "生产与设备", example: "Clean Steam 纯蒸汽, Compressed Air 压缩空气", practiceCount: 0, favorite: false },
-            { english: "HVAC", chinese: "暖通空调系统", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
-            { english: "Cleaning Validation", chinese: "清洁验证", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
-            { english: "Batch Record (MBR/EBR)", chinese: "批生产记录", category: "生产与设备", example: "纸质/电子", practiceCount: 0, favorite: false },
-            { english: "In-process Control", chinese: "中间控制", category: "生产与设备", example: "", practiceCount: 0, favorite: false },
+            { english: "Reactors", chinese: "反应釜", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_200" },
+            { english: "Centrifuge", chinese: "离心机", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_201" },
+            { english: "Filter / Dryer", chinese: "过滤器/干燥器", category: "生产与设备", example: "如：Tray Dryer 盘式干燥， FBD 流化床干燥", practiceCount: 0, favorite: false, isSystem: true, id: "sys_202" },
+            { english: "Milling", chinese: "粉碎", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_203" },
+            { english: "Blending / Mixing", chinese: "混合", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_204" },
+            { english: "Purified Water / WFI", chinese: "纯化水/注射用水", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_205" },
+            { english: "Clean Utilities", chinese: "洁净公用系统", category: "生产与设备", example: "Clean Steam 纯蒸汽, Compressed Air 压缩空气", practiceCount: 0, favorite: false, isSystem: true, id: "sys_206" },
+            { english: "HVAC", chinese: "暖通空调系统", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_207" },
+            { english: "Cleaning Validation", chinese: "清洁验证", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_208" },
+            { english: "Batch Record (MBR/EBR)", chinese: "批生产记录", category: "生产与设备", example: "纸质/电子", practiceCount: 0, favorite: false, isSystem: true, id: "sys_209" },
+            { english: "In-process Control", chinese: "中间控制", category: "生产与设备", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_210" },
             
             // 质量体系与GMP (211-220)
-            { english: "GMP / cGMP", chinese: "(现行)药品生产质量管理规范", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
-            { english: "SOP", chinese: "标准操作规程", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
-            { english: "Documentation / Record", chinese: "文件/记录", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
-            { english: "Deviation", chinese: "偏差", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
-            { english: "CAPA", chinese: "纠正与预防措施", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
-            { english: "Change Control", chinese: "变更控制", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
-            { english: "Audit / Inspection", chinese: "审计/检查", category: "质量体系与GMP", example: "Internal 内部, External 外部, Regulatory 官方", practiceCount: 0, favorite: false },
-            { english: "Qualification / Validation", chinese: "确认/验证", category: "质量体系与GMP", example: "DQ/IQ/OQ/PQ 设计/安装/运行/性能确认", practiceCount: 0, favorite: false },
-            { english: "Compliance", chinese: "合规", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
-            { english: "Quality Metrics", chinese: "质量指标", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false },
+            { english: "GMP / cGMP", chinese: "(现行)药品生产质量管理规范", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_211" },
+            { english: "SOP", chinese: "标准操作规程", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_212" },
+            { english: "Documentation / Record", chinese: "文件/记录", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_213" },
+            { english: "Deviation", chinese: "偏差", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_214" },
+            { english: "CAPA", chinese: "纠正与预防措施", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_215" },
+            { english: "Change Control", chinese: "变更控制", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_216" },
+            { english: "Audit / Inspection", chinese: "审计/检查", category: "质量体系与GMP", example: "Internal 内部, External 外部, Regulatory 官方", practiceCount: 0, favorite: false, isSystem: true, id: "sys_217" },
+            { english: "Qualification / Validation", chinese: "确认/验证", category: "质量体系与GMP", example: "DQ/IQ/OQ/PQ 设计/安装/运行/性能确认", practiceCount: 0, favorite: false, isSystem: true, id: "sys_218" },
+            { english: "Compliance", chinese: "合规", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_219" },
+            { english: "Quality Metrics", chinese: "质量指标", category: "质量体系与GMP", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_220" },
             
             // 法规与注册 (221-229)
-            { english: "ICH Guidelines", chinese: "ICH指导原则", category: "法规与注册", example: "如 Q7 API GMP, Q3 杂质, Q1 稳定性", practiceCount: 0, favorite: false },
-            { english: "Pharmacopoeia", chinese: "药典", category: "法规与注册", example: "USP, EP, ChP 美/欧/中国药典", practiceCount: 0, favorite: false },
-            { english: "EDMF / ASMF", chinese: "欧洲药物主文件/活性物质主文件", category: "法规与注册", example: "", practiceCount: 0, favorite: false },
-            { english: "DMF", chinese: "药物主文件", category: "法规与注册", example: "美国", practiceCount: 0, favorite: false },
-            { english: "CEP", chinese: "欧洲药典适应性证书", category: "法规与注册", example: "", practiceCount: 0, favorite: false },
-            { english: "Regulatory Submission", chinese: "注册申报", category: "法规与注册", example: "", practiceCount: 0, favorite: false },
-            { english: "GMP Certificate", chinese: "GMP证书", category: "法规与注册", example: "", practiceCount: 0, favorite: false },
-            { english: "Audit Trail", chinese: "审计追踪", category: "法规与注册", example: "", practiceCount: 0, favorite: false },
-            { english: "Data Integrity", chinese: "数据完整性", category: "法规与注册", example: "", practiceCount: 0, favorite: false },
+            { english: "ICH Guidelines", chinese: "ICH指导原则", category: "法规与注册", example: "如 Q7 API GMP, Q3 杂质, Q1 稳定性", practiceCount: 0, favorite: false, isSystem: true, id: "sys_221" },
+            { english: "Pharmacopoeia", chinese: "药典", category: "法规与注册", example: "USP, EP, ChP 美/欧/中国药典", practiceCount: 0, favorite: false, isSystem: true, id: "sys_222" },
+            { english: "EDMF / ASMF", chinese: "欧洲药物主文件/活性物质主文件", category: "法规与注册", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_223" },
+            { english: "DMF", chinese: "药物主文件", category: "法规与注册", example: "美国", practiceCount: 0, favorite: false, isSystem: true, id: "sys_224" },
+            { english: "CEP", chinese: "欧洲药典适应性证书", category: "法规与注册", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_225" },
+            { english: "Regulatory Submission", chinese: "注册申报", category: "法规与注册", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_226" },
+            { english: "GMP Certificate", chinese: "GMP证书", category: "法规与注册", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_227" },
+            { english: "Audit Trail", chinese: "审计追踪", category: "法规与注册", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_228" },
+            { english: "Data Integrity", chinese: "数据完整性", category: "法规与注册", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_229" },
             
             // EHS与供应链 (230-239)
-            { english: "EHS", chinese: "环境、健康与安全", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "HSE", chinese: "健康、安全与环境", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "MSDS / SDS", chinese: "物料安全数据表", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "Hazard / Risk Assessment", chinese: "危害/风险评估", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "Waste Treatment", chinese: "废物处理", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "Supply Chain", chinese: "供应链", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "Vendor / Supplier", chinese: "供应商", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "Raw Material", chinese: "原材料", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "Packaging Material", chinese: "包装材料", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
-            { english: "Logistics", chinese: "物流", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false },
+            { english: "EHS", chinese: "环境、健康与安全", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_230" },
+            { english: "HSE", chinese: "健康、安全与环境", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_231" },
+            { english: "MSDS / SDS", chinese: "物料安全数据表", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_232" },
+            { english: "Hazard / Risk Assessment", chinese: "危害/风险评估", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_233" },
+            { english: "Waste Treatment", chinese: "废物处理", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_234" },
+            { english: "Supply Chain", chinese: "供应链", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_235" },
+            { english: "Vendor / Supplier", chinese: "供应商", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_236" },
+            { english: "Raw Material", chinese: "原材料", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_237" },
+            { english: "Packaging Material", chinese: "包装材料", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_238" },
+            { english: "Logistics", chinese: "物流", category: "EHS与供应链", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_239" },
             
             // 综合管理 (240-247)
-            { english: "API", chinese: "活性药物成分", category: "综合管理", example: "", practiceCount: 0, favorite: false },
-            { english: "Drug Substance", chinese: "原料药", category: "综合管理", example: "与API同义，法规文件常用", practiceCount: 0, favorite: false },
-            { english: "COA", chinese: "质量检验报告", category: "综合管理", example: "", practiceCount: 0, favorite: false },
-            { english: "COC", chinese: "符合性证明", category: "综合管理", example: "", practiceCount: 0, favorite: false },
-            { english: "Batch Number / Lot Number", chinese: "批号", category: "综合管理", example: "", practiceCount: 0, favorite: false },
-            { english: "Expiry Date / Retest Date", chinese: "有效期/复验期", category: "综合管理", example: "", practiceCount: 0, favorite: false },
-            { english: "Quarantine / Release", chinese: "待检/放行", category: "综合管理", example: "", practiceCount: 0, favorite: false },
-            { english: "Traceability", chinese: "可追溯性", category: "综合管理", example: "", practiceCount: 0, favorite: false }
+            { english: "API", chinese: "活性药物成分", category: "综合管理", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_240" },
+            { english: "Drug Substance", chinese: "原料药", category: "综合管理", example: "与API同义，法规文件常用", practiceCount: 0, favorite: false, isSystem: true, id: "sys_241" },
+            { english: "COA", chinese: "质量检验报告", category: "综合管理", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_242" },
+            { english: "COC", chinese: "符合性证明", category: "综合管理", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_243" },
+            { english: "Batch Number / Lot Number", chinese: "批号", category: "综合管理", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_244" },
+            { english: "Expiry Date / Retest Date", chinese: "有效期/复验期", category: "综合管理", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_245" },
+            { english: "Quarantine / Release", chinese: "待检/放行", category: "综合管理", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_246" },
+            { english: "Traceability", chinese: "可追溯性", category: "综合管理", example: "", practiceCount: 0, favorite: false, isSystem: true, id: "sys_247" }
         ];
         
         // DOM元素
@@ -1183,10 +1242,30 @@
         const totalProgressElement = document.getElementById('total-progress');
         const favoritesReviewHint = document.getElementById('favorites-review-hint');
         
+        // 管理功能按钮
+        const updateSystemBtn = document.getElementById('update-system-btn');
+        const exportUserBtn = document.getElementById('export-user-btn');
+        const importUserBtn = document.getElementById('import-user-btn');
+        const resetSystemBtn = document.getElementById('reset-system-btn');
+        
         // 检查浏览器是否支持语音合成
         function checkSpeechSupport() {
             isSpeechSupported = 'speechSynthesis' in window;
             return isSpeechSupported;
+        }
+        
+        // 生成用户自定义术语的唯一ID
+        function generateUserId(word) {
+            // 基于英文、中文和创建时间生成唯一ID
+            const timestamp = word.createdAt || new Date().toISOString();
+            const baseStr = `${word.english}_${word.chinese}_${timestamp}`;
+            let hash = 0;
+            for (let i = 0; i < baseStr.length; i++) {
+                const char = baseStr.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // 转换为32位整数
+            }
+            return `user_${Math.abs(hash).toString(16)}`;
         }
         
         // 从本地存储加载单词
@@ -1203,19 +1282,28 @@
                         category: word.category || '常用词语',
                         example: word.example || '',
                         practiceCount: word.practiceCount || 0,
-                        favorite: word.favorite || false
+                        favorite: word.favorite || false,
+                        isSystem: word.isSystem || false,
+                        id: word.id || null,
+                        userId: word.userId || (word.isSystem ? null : generateUserId(word)),
+                        createdAt: word.createdAt || (word.isSystem ? null : new Date().toISOString())
                     }));
+                    
+                    // 如果用户自定义术语没有userId，则生成一个
+                    words.forEach(word => {
+                        if (!word.isSystem && !word.userId) {
+                            word.userId = generateUserId(word);
+                        }
+                    });
                     
                     updateWordCount();
                     updatePracticeStats();
                     renderWordList();
                 } catch (e) {
                     console.error('加载单词数据失败:', e);
-                    // 如果加载失败，使用默认数据
                     initializeDefaultWords();
                 }
             } else {
-                // 如果没有保存的单词，使用制药行业词汇
                 initializeDefaultWords();
             }
         }
@@ -1328,13 +1416,19 @@
             
             filteredWords.forEach((word, index) => {
                 // 查找单词在原始数组中的索引
-                const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
+                const originalIndex = words.findIndex(w => 
+                    w.english === word.english && w.chinese === word.chinese
+                );
                 
                 const wordItem = document.createElement('div');
                 wordItem.className = `word-item ${originalIndex === currentWordIndex ? 'active' : ''} ${speakingWordIndex === originalIndex ? 'speaking' : ''}`;
                 wordItem.innerHTML = `
                     <div class="word-info">
-                        <div class="word-english">${word.english} ${originalIndex === speakingWordIndex ? '<span class="pronunciation-indicator"><i class="fas fa-volume-up"></i></span>' : ''}</div>
+                        <div class="word-english">
+                            ${word.english} 
+                            ${originalIndex === speakingWordIndex ? '<span class="pronunciation-indicator"><i class="fas fa-volume-up"></i></span>' : ''}
+                            ${word.isSystem ? '<span class="system-tag">[系统]</span>' : '<span class="user-tag">[自定义]</span>'}
+                        </div>
                         <div class="word-chinese">${word.chinese}</div>
                         <div class="word-category">${word.category}</div>
                     </div>
@@ -1405,21 +1499,35 @@
         
         // 根据英文删除单词
         function deleteWordByEnglish(english) {
-            if (confirm('确定要删除这个术语吗？')) {
-                const index = words.findIndex(w => w.english === english);
-                if (index !== -1) {
-                    words.splice(index, 1);
-                    saveWords();
-                    renderWordList();
-                    
-                    // 如果删除的是当前选中的单词，清空练习区域
-                    if (currentWordIndex === index) {
-                        currentWordIndex = -1;
-                        clearPracticeDisplay();
-                        disablePracticeButtons();
-                    } else if (currentWordIndex > index) {
-                        currentWordIndex--;
-                    }
+            const index = words.findIndex(w => w.english === english);
+            if (index === -1) return;
+            
+            const word = words[index];
+            const isSystemWord = word.isSystem;
+            
+            let message = '确定要删除这个术语吗？\n\n';
+            message += `英文: ${word.english}\n`;
+            message += `中文: ${word.chinese}\n`;
+            message += `类型: ${isSystemWord ? '系统术语' : '您自定义的术语'}\n\n`;
+            
+            if (isSystemWord) {
+                message += '这是系统术语，删除后可以通过"更新系统术语"功能恢复。';
+            } else {
+                message += '这是您自定义的术语，删除后无法恢复，除非您有备份。';
+            }
+            
+            if (confirm(message)) {
+                words.splice(index, 1);
+                saveWords();
+                renderWordList();
+                
+                // 如果删除的是当前选中的单词，清空练习区域
+                if (currentWordIndex === index) {
+                    currentWordIndex = -1;
+                    clearPracticeDisplay();
+                    disablePracticeButtons();
+                } else if (currentWordIndex > index) {
+                    currentWordIndex--;
                 }
             }
         }
@@ -1471,12 +1579,16 @@
                 return;
             }
             
-            // 检查是否已存在相同的单词
-            const existingIndex = words.findIndex(w => w.english.toLowerCase() === english.toLowerCase());
+            // 检查是否已存在相同的单词（不区分系统还是用户）
+            const existingIndex = words.findIndex(w => 
+                w.english.toLowerCase() === english.toLowerCase() && 
+                w.chinese === chinese
+            );
             
             if (existingIndex >= 0) {
+                // 如果已存在，询问是否更新
                 if (confirm('这个术语已经存在，要更新它吗？')) {
-                    // 更新现有单词
+                    // 保留原有的属性，只更新内容
                     words[existingIndex] = {
                         ...words[existingIndex],
                         english,
@@ -1488,14 +1600,18 @@
                     renderWordList();
                 }
             } else {
-                // 添加新单词
+                // 添加新单词（用户自定义）
                 const newWord = {
                     english,
                     chinese,
                     category,
                     example,
                     practiceCount: 0,
-                    favorite: false
+                    favorite: false,
+                    isSystem: false,
+                    id: null,
+                    userId: generateUserId({ english, chinese, createdAt: new Date().toISOString() }),
+                    createdAt: new Date().toISOString()
                 };
                 
                 words.push(newWord);
@@ -1507,8 +1623,6 @@
             englishInput.value = '';
             chineseInput.value = '';
             exampleInput.value = '';
-            
-            // 聚焦到英语输入框
             englishInput.focus();
         }
         
@@ -1853,6 +1967,154 @@
             }
         }
         
+        // 更新系统术语库
+        function updateSystemTerms() {
+            if (!confirm('这将更新系统术语库，但会保留您添加的自定义术语。确定要继续吗？')) {
+                return;
+            }
+            
+            // 1. 提取用户自定义术语
+            const userWords = words.filter(word => !word.isSystem);
+            
+            // 2. 准备新的系统术语（添加标识）
+            const newSystemTerms = pharmaceuticalTerms.map(term => ({
+                ...term,
+                isSystem: true,
+                id: term.id || `sys_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+            }));
+            
+            // 3. 合并：系统术语 + 用户自定义术语
+            // 但需要处理重复：如果用户添加的术语与系统术语相同，使用用户的版本（保留练习记录和收藏状态）
+            const mergedWords = [...newSystemTerms];
+            
+            userWords.forEach(userWord => {
+                // 检查是否与系统术语重复
+                const systemDuplicateIndex = mergedWords.findIndex(sysWord => 
+                    sysWord.english.toLowerCase() === userWord.english.toLowerCase() &&
+                    sysWord.chinese === userWord.chinese
+                );
+                
+                if (systemDuplicateIndex >= 0) {
+                    // 保留用户的版本，但标记为系统术语（因为含义相同）
+                    // 这样可以确保练习记录和收藏状态被保留
+                    mergedWords[systemDuplicateIndex] = {
+                        ...userWord,
+                        isSystem: true, // 标记为系统术语
+                        id: mergedWords[systemDuplicateIndex].id // 保留系统ID
+                    };
+                } else {
+                    // 完全不同的术语，直接添加
+                    mergedWords.push(userWord);
+                }
+            });
+            
+            // 4. 保存合并后的数据
+            words = mergedWords;
+            saveWords();
+            renderWordList();
+            
+            alert(`系统术语库已更新！\n当前共有 ${words.length} 个术语，其中 ${userWords.length} 个是您自定义的。`);
+        }
+        
+        // 导出用户自定义术语
+        function exportUserWords() {
+            const userWords = words.filter(word => !word.isSystem);
+            if (userWords.length === 0) {
+                alert('您还没有添加任何自定义术语。');
+                return;
+            }
+            
+            const dataStr = JSON.stringify(userWords, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = '隆莱英语_自定义术语_备份.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        // 导入用户自定义术语
+        function importUserWords() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedWords = JSON.parse(e.target.result);
+                        
+                        if (!Array.isArray(importedWords)) {
+                            throw new Error('文件格式不正确');
+                        }
+                        
+                        // 验证导入的数据结构
+                        const validWords = importedWords.filter(word => 
+                            word.english && word.chinese && word.category
+                        );
+                        
+                        if (validWords.length === 0) {
+                            alert('导入的文件中没有有效的术语数据。');
+                            return;
+                        }
+                        
+                        // 为导入的术语添加标识
+                        const newUserWords = validWords.map(word => ({
+                            ...word,
+                            isSystem: false,
+                            userId: generateUserId(word),
+                            createdAt: word.createdAt || new Date().toISOString()
+                        }));
+                        
+                        // 添加到现有数据中，避免重复
+                        let addedCount = 0;
+                        newUserWords.forEach(newWord => {
+                            const exists = words.some(existingWord => 
+                                existingWord.english.toLowerCase() === newWord.english.toLowerCase() &&
+                                existingWord.chinese === newWord.chinese
+                            );
+                            
+                            if (!exists) {
+                                words.push(newWord);
+                                addedCount++;
+                            }
+                        });
+                        
+                        saveWords();
+                        renderWordList();
+                        
+                        alert(`成功导入 ${addedCount} 个自定义术语！`);
+                    } catch (error) {
+                        alert('导入失败：' + error.message);
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+        
+        // 清空系统术语（仅保留用户自定义术语）
+        function resetSystemTerms() {
+            if (!confirm('这将移除所有系统术语，只保留您自定义的术语。确定要继续吗？')) {
+                return;
+            }
+            
+            const userWords = words.filter(word => !word.isSystem);
+            words = userWords;
+            saveWords();
+            renderWordList();
+            
+            alert(`已清空系统术语，保留了 ${userWords.length} 个您自定义的术语。`);
+        }
+        
         // 加载语音列表
         function loadVoices() {
             if (!isSpeechSupported) return;
@@ -1938,6 +2200,12 @@
         startPracticeBtn.addEventListener('click', startPractice);
         endPracticeBtn.addEventListener('click', endPractice);
         toggleFavoriteBtn.addEventListener('click', toggleFavorite);
+        
+        // 管理功能按钮事件监听器
+        updateSystemBtn.addEventListener('click', updateSystemTerms);
+        exportUserBtn.addEventListener('click', exportUserWords);
+        importUserBtn.addEventListener('click', importUserWords);
+        resetSystemBtn.addEventListener('click', resetSystemTerms);
         
         // 允许按Enter键添加单词
         englishInput.addEventListener('keypress', function(e) {
