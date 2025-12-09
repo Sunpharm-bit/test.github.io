@@ -11,6 +11,7 @@
             --secondary-color: #3498db;
             --accent-color: #27ae60;
             --danger-color: #e74c3c;
+            --warning-color: #f39c12;
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
             --gray-color: #7f8c8d;
@@ -238,6 +239,11 @@
             color: white;
         }
         
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning-color) 0%, #d68910 100%);
+            color: white;
+        }
+        
         .btn-sm {
             padding: 4px 6px;
             font-size: 0.7rem;
@@ -320,7 +326,7 @@
             gap: 4px;
         }
         
-        /* 学习区域 - 修改为练习模式 */
+        /* 练习区域 - 修改为练习模式 */
         .practice-area {
             padding: 12px 10px;
             background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
@@ -372,6 +378,31 @@
         .practice-btn {
             padding: 10px 5px;
             font-size: 0.8rem;
+        }
+        
+        /* 练习模式选择 */
+        .practice-mode-selector {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .mode-btn {
+            flex: 1;
+            padding: 8px 5px;
+            border: none;
+            border-radius: 3px;
+            background-color: #f0f2f5;
+            color: var(--dark-color);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mode-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
         }
         
         /* 练习统计信息 */
@@ -582,6 +613,20 @@
         .show-chinese-btn {
             margin-bottom: 10px;
         }
+        
+        /* 练习进度指示 */
+        .practice-progress {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            margin-top: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        /* 复习按钮 */
+        .review-favorites-btn {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -691,6 +736,7 @@
                         <button class="category-btn" data-category="法规与注册">法规注册</button>
                         <button class="category-btn" data-category="EHS与供应链">EHS供应商</button>
                         <button class="category-btn" data-category="综合管理">综合管理</button>
+                        <button class="category-btn" data-category="favorites">已收藏</button>
                     </div>
                     
                     <div class="category-stats">
@@ -727,10 +773,25 @@
                         <span id="current-category-display">全部</span>
                     </div>
                     
+                    <!-- 练习模式选择 -->
+                    <div class="practice-mode-selector">
+                        <button class="mode-btn active" data-mode="category">
+                            <i class="fas fa-layer-group"></i> 分类练习
+                        </button>
+                        <button class="mode-btn" data-mode="favorites">
+                            <i class="fas fa-star"></i> 收藏复习
+                        </button>
+                    </div>
+                    
                     <div class="practice-area" id="practice-area">
                         <div class="practice-category" id="practice-category">常用词语</div>
-                        <div class="practice-english" id="practice-english">请点击"开始练习"按钮</div>
+                        <div class="practice-english" id="practice-english">请选择练习模式并点击"开始练习"按钮</div>
                         <div class="practice-chinese" id="practice-chinese"></div>
+                        
+                        <!-- 练习进度指示 -->
+                        <div class="practice-progress" id="practice-progress">
+                            进度: <span id="current-progress">0</span>/<span id="total-progress">0</span>
+                        </div>
                         
                         <button id="show-chinese-btn" class="btn btn-secondary show-chinese-btn" disabled>
                             <i class="fas fa-eye"></i> 查看中文
@@ -757,6 +818,14 @@
                         <button id="end-practice-btn" class="btn btn-danger" style="display: none; margin-top: 8px;">
                             <i class="fas fa-stop-circle"></i> 结束练习
                         </button>
+                        
+                        <!-- 收藏复习提示 -->
+                        <div id="favorites-review-hint" class="hint" style="margin-top: 10px; display: none;">
+                            <div class="hint-title">
+                                <i class="fas fa-star"></i> 收藏复习模式
+                            </div>
+                            <p>当前正在复习您收藏的单词。您可以在列表中点击"已收藏"分类查看所有收藏的单词。</p>
+                        </div>
                     </div>
                     
                     <!-- 练习统计信息 -->
@@ -779,7 +848,8 @@
                         <div class="hint-title">
                             <i class="fas fa-info-circle"></i> 练习说明
                         </div>
-                        <p>• 点击"开始练习"按钮开始练习当前分类的单词</p>
+                        <p>• <strong>分类练习</strong>: 练习当前分类的所有单词</p>
+                        <p>• <strong>收藏复习</strong>: 专门练习您收藏的重要单词</p>
                         <p>• 点击"朗读英文"按钮听英文发音</p>
                         <p>• 点击"查看中文"按钮查看中文释义</p>
                         <p>• 点击"收藏"按钮标记重要单词</p>
@@ -806,6 +876,7 @@
         let speakingWordIndex = -1;
         let practiceWords = [];
         let practiceIndex = 0;
+        let currentPracticeMode = 'category'; // 'category' 或 'favorites'
         
         // 制药行业词汇数据 - 按照分类整理，确保每个单词都有完整的字段
         const pharmaceuticalTerms = [
@@ -909,6 +980,7 @@
             { english: "processing", chinese: "加工", category: "通用术语", example: "", practiceCount: 0, favorite: false },
             { english: "concentration", chinese: "浓度", category: "通用术语", example: "", practiceCount: 0, favorite: false },
             { english: "purity", chinese: "纯度", category: "通用术语", example: "", practiceCount: 0, favorite: false },
+
             
             // 研发与工艺 (100-114)
             { english: "CMC", chinese: "化学、制造与控制", category: "研发与工艺", example: "", practiceCount: 0, favorite: false },
@@ -1106,6 +1178,11 @@
         const totalWordsElement = document.getElementById('total-words');
         const practicedCountElement = document.getElementById('practiced-count');
         const favoriteCountElement = document.getElementById('favorite-count');
+        const modeButtons = document.querySelectorAll('.mode-btn');
+        const practiceProgress = document.getElementById('practice-progress');
+        const currentProgressElement = document.getElementById('current-progress');
+        const totalProgressElement = document.getElementById('total-progress');
+        const favoritesReviewHint = document.getElementById('favorites-review-hint');
         
         // 检查浏览器是否支持语音合成
         function checkSpeechSupport() {
@@ -1188,16 +1265,30 @@
         
         // 获取当前筛选的单词列表
         function getFilteredWords() {
-            if (currentCategoryFilter !== 'all') {
+            if (currentCategoryFilter === 'favorites') {
+                return words.filter(word => word.favorite);
+            } else if (currentCategoryFilter !== 'all') {
                 return words.filter(word => word.category === currentCategoryFilter);
             }
             return words;
         }
         
+        // 根据练习模式获取单词列表
+        function getPracticeWords() {
+            if (currentPracticeMode === 'favorites') {
+                // 收藏复习模式：只返回已收藏的单词
+                return words.filter(word => word.favorite);
+            } else {
+                // 分类练习模式：返回当前分类的单词
+                return getFilteredWords();
+            }
+        }
+        
         // 更新分类练习统计
         function updateCategoryPracticeCount() {
             let filteredWords = getFilteredWords();
-            let categoryName = currentCategoryFilter === 'all' ? '全部' : currentCategoryFilter;
+            let categoryName = currentCategoryFilter === 'all' ? '全部' : 
+                              currentCategoryFilter === 'favorites' ? '已收藏' : currentCategoryFilter;
             categoryPracticeCount.textContent = `${categoryName}: ${filteredWords.length}个术语`;
             
             // 如果没有单词，禁用练习按钮
@@ -1346,6 +1437,26 @@
                 if (currentWordIndex === index) {
                     updateFavoriteButton();
                 }
+                
+                // 如果当前正在收藏复习模式，且取消收藏了当前单词，需要重新获取练习列表
+                if (isPracticing && currentPracticeMode === 'favorites' && currentWordIndex === index && !words[index].favorite) {
+                    // 重新获取练习单词列表
+                    practiceWords = getPracticeWords();
+                    if (practiceWords.length === 0) {
+                        // 如果没有收藏的单词了，结束练习
+                        endPractice();
+                        alert('已取消收藏所有单词，练习已结束。');
+                    } else {
+                        // 调整练习索引
+                        practiceIndex = Math.max(0, practiceIndex - 1);
+                        const word = practiceWords[practiceIndex];
+                        const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
+                        if (originalIndex !== -1) {
+                            selectWordForPractice(originalIndex);
+                            updatePracticeProgress();
+                        }
+                    }
+                }
             }
         }
         
@@ -1416,7 +1527,11 @@
             practiceCategory.textContent = word.category;
             
             // 更新当前分类显示
-            currentCategoryDisplay.textContent = word.category;
+            if (currentPracticeMode === 'favorites') {
+                currentCategoryDisplay.textContent = '收藏复习';
+            } else {
+                currentCategoryDisplay.textContent = word.category;
+            }
             
             // 更新收藏按钮状态
             updateFavoriteButton();
@@ -1426,16 +1541,21 @@
             
             // 更新单词列表高亮
             renderWordList();
+            
+            // 更新练习进度
+            updatePracticeProgress();
         }
         
         // 清空练习显示
         function clearPracticeDisplay() {
-            practiceEnglish.textContent = '请点击"开始练习"按钮';
+            practiceEnglish.textContent = '请选择练习模式并点击"开始练习"按钮';
             practiceChinese.textContent = '';
             practiceChinese.classList.remove('show');
             practiceCategory.textContent = '常用词语';
             currentCategoryDisplay.textContent = '全部';
             disablePracticeButtons();
+            practiceProgress.style.display = 'none';
+            favoritesReviewHint.style.display = 'none';
         }
         
         // 更新收藏按钮状态
@@ -1476,10 +1596,14 @@
                 return;
             }
             
-            let wordsToPractice = getFilteredWords();
+            let wordsToPractice = getPracticeWords();
             
             if (wordsToPractice.length === 0) {
-                alert('当前分类没有术语可练习！');
+                if (currentPracticeMode === 'favorites') {
+                    alert('您还没有收藏任何单词，请先收藏一些单词再开始复习！');
+                } else {
+                    alert('当前分类没有术语可练习！');
+                }
                 return;
             }
             
@@ -1491,6 +1615,14 @@
             // 更新按钮状态
             startPracticeBtn.style.display = 'none';
             endPracticeBtn.style.display = 'block';
+            practiceProgress.style.display = 'block';
+            
+            // 显示/隐藏收藏复习提示
+            if (currentPracticeMode === 'favorites') {
+                favoritesReviewHint.style.display = 'block';
+            } else {
+                favoritesReviewHint.style.display = 'none';
+            }
             
             // 选择第一个单词开始练习
             const firstWord = practiceWords[0];
@@ -1515,9 +1647,18 @@
             // 更新按钮状态
             startPracticeBtn.style.display = 'block';
             endPracticeBtn.style.display = 'none';
+            practiceProgress.style.display = 'none';
             
             // 清空练习显示
             clearPracticeDisplay();
+        }
+        
+        // 更新练习进度
+        function updatePracticeProgress() {
+            if (isPracticing && practiceWords.length > 0) {
+                currentProgressElement.textContent = practiceIndex + 1;
+                totalProgressElement.textContent = practiceWords.length;
+            }
         }
         
         // 上一个单词
@@ -1561,6 +1702,31 @@
                 renderWordList();
                 updateFavoriteButton();
                 updatePracticeStats();
+                
+                // 如果正在收藏复习模式，需要更新练习列表
+                if (isPracticing && currentPracticeMode === 'favorites') {
+                    practiceWords = getPracticeWords();
+                    if (practiceWords.length === 0) {
+                        endPractice();
+                        alert('已取消收藏所有单词，练习已结束。');
+                    } else {
+                        // 重新查找当前单词在练习列表中的位置
+                        const currentWord = words[currentWordIndex];
+                        const newIndex = practiceWords.findIndex(w => w.english === currentWord.english && w.chinese === currentWord.chinese);
+                        if (newIndex !== -1) {
+                            practiceIndex = newIndex;
+                        } else {
+                            // 如果当前单词被取消收藏，选择前一个单词
+                            practiceIndex = Math.max(0, practiceIndex - 1);
+                            const word = practiceWords[practiceIndex];
+                            const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
+                            if (originalIndex !== -1) {
+                                selectWordForPractice(originalIndex);
+                            }
+                        }
+                        updatePracticeProgress();
+                    }
+                }
             }
         }
         
@@ -1652,11 +1818,40 @@
                 return;
             }
             
+            // 设置练习模式为分类练习
+            switchPracticeMode('category');
+            
             // 切换到练习选项卡
             switchTab('practice-tab');
             
             // 开始练习
             startPractice();
+        }
+        
+        // 切换练习模式
+        function switchPracticeMode(mode) {
+            currentPracticeMode = mode;
+            
+            // 更新模式按钮状态
+            modeButtons.forEach(button => {
+                if (button.getAttribute('data-mode') === mode) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+            
+            // 更新开始练习按钮文本
+            if (mode === 'favorites') {
+                startPracticeBtn.innerHTML = '<i class="fas fa-star"></i> 开始收藏复习';
+            } else {
+                startPracticeBtn.innerHTML = '<i class="fas fa-play-circle"></i> 开始练习';
+            }
+            
+            // 清空当前练习显示
+            if (!isPracticing) {
+                clearPracticeDisplay();
+            }
         }
         
         // 加载语音列表
@@ -1780,6 +1975,14 @@
             button.addEventListener('click', function() {
                 const category = this.getAttribute('data-category');
                 switchCategoryFilter(category);
+            });
+        });
+        
+        // 练习模式按钮事件
+        modeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const mode = this.getAttribute('data-mode');
+                switchPracticeMode(mode);
             });
         });
         
