@@ -1775,32 +1775,40 @@
         }
         
         // 上一个单词
-        function prevWord() {
-            if (!isPracticing || practiceWords.length === 0) return;
-            
-            practiceIndex = (practiceIndex - 1 + practiceWords.length) % practiceWords.length;
-            
-            const word = practiceWords[practiceIndex];
-            const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
-            
-            if (originalIndex !== -1) {
-                selectWordForPractice(originalIndex);
-            }
-        }
-        
-        // 下一个单词
-        function nextWord() {
-            if (!isPracticing || practiceWords.length === 0) return;
-            
-            practiceIndex = (practiceIndex + 1) % practiceWords.length;
-            
-            const word = practiceWords[practiceIndex];
-            const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
-            
-            if (originalIndex !== -1) {
-                selectWordForPractice(originalIndex);
-            }
-        }
+function prevWord() {
+    if (!isPracticing || practiceWords.length === 0) return;
+    
+    practiceIndex = (practiceIndex - 1 + practiceWords.length) % practiceWords.length;
+    
+    const word = practiceWords[practiceIndex];
+    const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
+    
+    if (originalIndex !== -1) {
+        selectWordForPractice(originalIndex);
+        // 自动朗读英文
+        setTimeout(() => {
+            speakEnglish();
+        }, 100);
+    }
+}
+
+// 下一个单词
+function nextWord() {
+    if (!isPracticing || practiceWords.length === 0) return;
+    
+    practiceIndex = (practiceIndex + 1) % practiceWords.length;
+    
+    const word = practiceWords[practiceIndex];
+    const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
+    
+    if (originalIndex !== -1) {
+        selectWordForPractice(originalIndex);
+        // 自动朗读英文
+        setTimeout(() => {
+            speakEnglish();
+        }, 100);
+    }
+}
         
         // 显示中文
         function showChinese() {
