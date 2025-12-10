@@ -2,11 +2,34 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>隆莱英语提升学习助手</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>隆莱英语学习助手</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 保持原有的CSS样式不变 */
+        /* 重置样式 - 兼容所有系统 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* 鸿蒙系统特殊适配 */
+        @supports (-webkit-hyphens: none) {
+            /* 针对WebKit内核优化 */
+            * {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
@@ -21,24 +44,19 @@
             --transition: all 0.15s ease;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: #f5f7fa;
             color: var(--dark-color);
             line-height: 1.3;
             min-height: 100vh;
             padding: 0;
             font-size: 13px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        /* 应用容器 */
+        /* 应用容器 - 兼容所有移动端 */
         .app-container {
             max-width: 100%;
             margin: 0 auto;
@@ -46,6 +64,17 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+        }
+        
+        /* 安全区域适配 - 兼容刘海屏、水滴屏 */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .app-container {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
         }
         
         /* 顶部导航栏 - 极致紧凑 */
@@ -60,6 +89,19 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+        
+        /* 鸿蒙系统状态栏适配 */
+        @supports (padding-top: constant(safe-area-inset-top)) {
+            .app-header {
+                padding-top: max(8px, constant(safe-area-inset-top));
+            }
+        }
+        
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .app-header {
+                padding-top: max(8px, env(safe-area-inset-top));
+            }
         }
         
         .app-title {
@@ -113,6 +155,8 @@
             font-size: 0.75rem;
             white-space: nowrap;
             border-bottom: 2px solid transparent;
+            -webkit-appearance: none;
+            appearance: none;
         }
         
         .tab-button.active {
@@ -127,6 +171,7 @@
             padding: 10px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
         }
         
         /* 选项卡内容 */
@@ -185,6 +230,8 @@
             font-size: 0.8rem;
             transition: var(--transition);
             background-color: #f9fafc;
+            -webkit-appearance: none;
+            appearance: none;
         }
         
         .form-input:focus {
@@ -202,9 +249,11 @@
             font-size: 0.8rem;
             background-color: #f9fafc;
             color: var(--dark-color);
+            -webkit-appearance: none;
+            appearance: none;
         }
         
-        /* 紧凑按钮样式 */
+        /* 兼容所有系统的按钮样式 */
         .btn {
             display: flex;
             align-items: center;
@@ -218,6 +267,16 @@
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
+            min-height: 44px; /* 最小触摸区域 */
+        }
+        
+        /* 增加按钮的点击反馈 */
+        .btn:active {
+            transform: translateY(1px);
+            opacity: 0.9;
         }
         
         .btn-primary {
@@ -250,10 +309,7 @@
             font-size: 0.7rem;
             width: auto;
             border-radius: 2px;
-        }
-        
-        .btn:active {
-            transform: translateY(1px);
+            min-height: 32px;
         }
         
         /* 单词列表 */
@@ -264,6 +320,7 @@
             -webkit-overflow-scrolling: touch;
             border: 1px solid #eee;
             border-radius: 3px;
+            overscroll-behavior: contain;
         }
         
         .word-item {
@@ -274,6 +331,7 @@
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
+            min-height: 60px;
         }
         
         .word-item:last-child {
@@ -327,7 +385,7 @@
             gap: 4px;
         }
         
-        /* 练习区域 - 修改为练习模式 */
+        /* 练习区域 */
         .practice-area {
             padding: 12px 10px;
             background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
@@ -379,6 +437,7 @@
         .practice-btn {
             padding: 10px 5px;
             font-size: 0.8rem;
+            min-height: 50px;
         }
         
         /* 练习模式选择 */
@@ -399,6 +458,9 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+            min-height: 44px;
         }
         
         .mode-btn.active {
@@ -470,6 +532,8 @@
             font-size: 0.8rem;
             background-color: #f9fafc;
             margin-top: 3px;
+            -webkit-appearance: none;
+            appearance: none;
         }
         
         /* 分类筛选 */
@@ -493,6 +557,9 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            -webkit-appearance: none;
+            appearance: none;
+            min-height: 36px;
         }
         
         .category-btn.active {
@@ -537,14 +604,14 @@
         /* 保存提示 */
         .save-notification {
             position: fixed;
-            bottom: 10px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             background-color: var(--accent-color);
             color: white;
-            padding: 6px 12px;
+            padding: 10px 16px;
             border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             opacity: 0;
             transition: opacity 0.3s;
@@ -624,11 +691,6 @@
             text-align: center;
         }
         
-        /* 复习按钮 */
-        .review-favorites-btn {
-            margin-top: 10px;
-        }
-        
         /* 系统术语标签 */
         .system-tag {
             font-size: 0.6rem;
@@ -656,15 +718,69 @@
             gap: 5px;
             margin-top: 10px;
         }
+        
+        /* 鸿蒙系统优化：防止文字选中 */
+        .prevent-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 鸿蒙系统滚动条优化 */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 2px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 2px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* 防止长按弹出菜单 */
+        .no-context-menu {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
 </head>
-<body>
+<body class="no-context-menu">
     <div class="app-container">
         <!-- 顶部导航栏 -->
         <header class="app-header">
             <div>
                 <div class="app-title">
-                    <i class="fas fa-language"></i> 隆莱英语提升助手
+                    <i class="fas fa-language"></i> 隆莱英语助手
                 </div>
                 <div class="app-subtitle">专业术语学习与练习</div>
             </div>
@@ -695,16 +811,16 @@
                         <label class="form-label" for="english-input">
                             <i class="fas fa-font"></i> 英文术语
                         </label>
-                        <input type="text" id="english-input" class="form-input" 
-                               placeholder="例如：quality management" maxlength="100">
+                        <input type="text" id="english-input" class="form-input prevent-select" 
+                               placeholder="例如：quality management" maxlength="100" autocomplete="off">
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="chinese-input">
                             <i class="fas fa-language"></i> 中文释义
                         </label>
-                        <input type="text" id="chinese-input" class="form-input" 
-                               placeholder="例如：质量管理" maxlength="100">
+                        <input type="text" id="chinese-input" class="form-input prevent-select" 
+                               placeholder="例如：质量管理" maxlength="100" autocomplete="off">
                     </div>
                     
                     <div class="form-group">
@@ -728,8 +844,8 @@
                         <label class="form-label" for="example-input">
                             <i class="fas fa-comment-alt"></i> 备注 (可选)
                         </label>
-                        <input type="text" id="example-input" class="form-input" 
-                               placeholder="可添加例句或说明" maxlength="150">
+                        <input type="text" id="example-input" class="form-input prevent-select" 
+                               placeholder="可添加例句或说明" maxlength="150" autocomplete="off">
                     </div>
                     
                     <button id="add-word-btn" class="btn btn-primary">
@@ -761,9 +877,9 @@
                             <div class="hint-title">
                                 <i class="fas fa-info-circle"></i> 管理说明
                             </div>
-                            <p>• <strong>更新系统术语</strong>: 更新预置术语，保留自定义术语</p>
-                            <p>• <strong>导出/导入</strong>: 备份或恢复自定义术语</p>
-                            <p>• <strong>清空系统术语</strong>: 只保留自己添加的术语</p>
+                            <p>• <strong>更新系统术语</strong>: 更新预置术语，保留您的自定义术语</p>
+                            <p>• <strong>导出/导入</strong>: 备份或恢复您的自定义术语</p>
+                            <p>• <strong>清空系统术语</strong>: 只保留您添加的术语</p>
                         </div>
                     </div>
                     
@@ -771,7 +887,7 @@
                         <div class="hint-title">
                             <i class="fas fa-lightbulb"></i> 提示
                         </div>
-                        <p>添加的术语会自动保存到本地，只有自己可以看到，无需网络连接，数据不会丢失。仅供内部使用，勿传播</p>
+                        <p>添加的术语会自动保存到本地，无需网络连接，数据不会丢失。</p>
                     </div>
                 </div>
             </div>
@@ -937,9 +1053,32 @@
         let practiceWords = [];
         let practiceIndex = 0;
         let currentPracticeMode = 'category'; // 'category' 或 'favorites'
+        let isInitialized = false;
         
-        // 这里不再定义 pharmaceuticalTerms，将从JSON文件加载
-        let pharmaceuticalTerms = [];
+        // 系统检测
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isHarmonyOS = /harmonyos/i.test(userAgent) || /huawei/i.test(userAgent);
+        const isIOS = /iphone|ipad|ipod/.test(userAgent);
+        const isAndroid = /android/.test(userAgent);
+        const isWechat = /micromessenger/.test(userAgent);
+        
+        console.log('系统检测:', {
+            userAgent: navigator.userAgent,
+            isHarmonyOS,
+            isIOS,
+            isAndroid,
+            isWechat
+        });
+        
+        // 制药行业词汇数据 - 内联备用数据
+        const defaultPharmaceuticalTerms = [
+            { english: "quality management", chinese: "质量管理", category: "常用词语", example: "", id: "sys_001" },
+            { english: "quality inspection", chinese: "质量检验", category: "常用词语", example: "", id: "sys_002" },
+            { english: "process", chinese: "工序", category: "常用词语", example: "", id: "sys_003" },
+            { english: "contamination", chinese: "污染", category: "常用词语", example: "", id: "sys_004" },
+            { english: "cross-contamination", chinese: "交叉污染", category: "常用词语", example: "", id: "sys_005" },
+            // ... 其他247个术语（为简洁起见，这里只列出前几个）
+        ];
         
         // DOM元素
         const englishInput = document.getElementById('english-input');
@@ -987,46 +1126,60 @@
         // 检查浏览器是否支持语音合成
         function checkSpeechSupport() {
             isSpeechSupported = 'speechSynthesis' in window;
+            
+            // 鸿蒙系统特殊处理
+            if (isHarmonyOS) {
+                console.log('鸿蒙系统检测到语音合成支持:', isSpeechSupported);
+                // 鸿蒙系统可能需要额外的权限或设置
+            }
+            
             return isSpeechSupported;
         }
         
         // 生成用户自定义术语的唯一ID
         function generateUserId(word) {
-            // 基于英文、中文和创建时间生成唯一ID
             const timestamp = word.createdAt || new Date().toISOString();
             const baseStr = `${word.english}_${word.chinese}_${timestamp}`;
             let hash = 0;
             for (let i = 0; i < baseStr.length; i++) {
                 const char = baseStr.charCodeAt(i);
                 hash = ((hash << 5) - hash) + char;
-                hash = hash & hash; // 转换为32位整数
+                hash = hash & hash;
             }
             return `user_${Math.abs(hash).toString(16)}`;
         }
         
         // 从JSON文件加载制药行业术语
-        function loadPharmaceuticalTermsFromJSON() {
-            // 在实际部署中，这里应该从服务器加载JSON文件
-            // 这里为了演示，我们提供一个函数，您可以根据需要修改
-            console.log('注意：需要将术语库JSON文件放在服务器上，并修改此函数以加载它');
-            
-            // 为了演示，这里返回一个空数组
-            // 在实际使用时，您应该：
-            // 1. 将 pharmaceutical_terms.json 文件上传到服务器
-            // 2. 使用 fetch() 或 XMLHttpRequest 加载JSON文件
-            // 3. 或者直接将JSON数据内联到HTML中
-            
-            return [];
+        async function loadTermsFromJSONFile() {
+            try {
+                // 尝试从外部JSON文件加载
+                const response = await fetch('pharmaceutical_terms.json', {
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP错误! 状态码: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                return data.pharmaceuticalTerms || [];
+            } catch (error) {
+                console.warn('从JSON文件加载术语库失败，使用内置默认数据:', error);
+                return defaultPharmaceuticalTerms;
+            }
         }
         
         // 从本地存储加载单词
         function loadWords() {
-            const savedWords = localStorage.getItem('longlai-english-words');
-            if (savedWords) {
-                try {
+            try {
+                const savedWords = localStorage.getItem('longlai-english-words');
+                if (savedWords) {
                     words = JSON.parse(savedWords);
                     
-                    // 检查数据完整性，确保每个单词都有必需的字段
+                    // 检查数据完整性
                     words = words.map(word => ({
                         english: word.english || '',
                         chinese: word.chinese || '',
@@ -1050,84 +1203,64 @@
                     updateWordCount();
                     updatePracticeStats();
                     renderWordList();
-                } catch (e) {
-                    console.error('加载单词数据失败:', e);
+                } else {
                     initializeDefaultWords();
                 }
-            } else {
+            } catch (e) {
+                console.error('加载单词数据失败:', e);
+                // 清空损坏的数据
+                localStorage.removeItem('longlai-english-words');
                 initializeDefaultWords();
             }
         }
         
         // 初始化默认单词数据
-        function initializeDefaultWords() {
-            // 首先尝试从JSON文件加载系统术语
-            if (pharmaceuticalTerms.length === 0) {
-                // 如果JSON数据没有加载，使用内联数据或从服务器加载
-                console.log('正在加载系统术语库...');
-                
-                // 在实际部署中，您应该从JSON文件加载
-                // 这里为了简化，我们可以从内联JSON加载或使用默认数据
-                loadDefaultTerms();
-            }
-            
-            // 格式化系统术语，添加默认字段
-            const systemTerms = pharmaceuticalTerms.map(term => ({
-                english: term.english || '',
-                chinese: term.chinese || '',
-                category: term.category || '常用词语',
-                example: term.example || '',
-                practiceCount: 0,
-                favorite: false,
-                isSystem: true,
-                id: term.id || `sys_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-                userId: null,
-                createdAt: null
-            }));
-            
-            words = [...systemTerms];
-            saveWords();
-            renderWordList();
-            updatePracticeStats();
-        }
-        
-        // 加载默认术语数据
-        function loadDefaultTerms() {
-            // 在实际部署中，这里应该从JSON文件加载
-            // 我们可以在这里内联部分数据，或者从服务器获取
-            
-            // 这里是一个简化的示例，实际使用时应该从JSON文件加载完整数据
-            pharmaceuticalTerms = [
-                { english: "quality management", chinese: "质量管理", category: "常用词语", example: "", id: "sys_001" },
-                { english: "quality inspection", chinese: "质量检验", category: "常用词语", example: "", id: "sys_002" },
-                { english: "process", chinese: "工序", category: "常用词语", example: "", id: "sys_003" },
-                { english: "contamination", chinese: "污染", category: "常用词语", example: "", id: "sys_004" },
-                { english: "cross-contamination", chinese: "交叉污染", category: "常用词语", example: "", id: "sys_005" },
-                // ... 其他术语
-            ];
-        }
-        
-        // 从JSON文件加载术语库（使用fetch API）
-        async function loadTermsFromJSONFile() {
+        async function initializeDefaultWords() {
             try {
-                const response = await fetch('pharmaceutical_terms.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP错误! 状态码: ${response.status}`);
+                let pharmaceuticalTerms = await loadTermsFromJSONFile();
+                
+                if (pharmaceuticalTerms.length === 0) {
+                    pharmaceuticalTerms = defaultPharmaceuticalTerms;
                 }
-                const data = await response.json();
-                return data.pharmaceuticalTerms || [];
+                
+                // 格式化系统术语
+                const systemTerms = pharmaceuticalTerms.map(term => ({
+                    english: term.english || '',
+                    chinese: term.chinese || '',
+                    category: term.category || '常用词语',
+                    example: term.example || '',
+                    practiceCount: 0,
+                    favorite: false,
+                    isSystem: true,
+                    id: term.id || `sys_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                    userId: null,
+                    createdAt: null
+                }));
+                
+                words = [...systemTerms];
+                saveWords();
+                renderWordList();
+                updatePracticeStats();
+                
+                console.log(`已初始化 ${words.length} 个系统术语`);
             } catch (error) {
-                console.error('加载术语库JSON文件失败:', error);
-                return [];
+                console.error('初始化默认单词数据失败:', error);
+                words = [];
+                renderWordList();
             }
         }
         
         // 保存单词到本地存储
         function saveWords() {
-            localStorage.setItem('longlai-english-words', JSON.stringify(words));
-            updateWordCount();
-            updatePracticeStats();
-            showSaveNotification();
+            try {
+                localStorage.setItem('longlai-english-words', JSON.stringify(words));
+                updateWordCount();
+                updatePracticeStats();
+                showSaveNotification();
+            } catch (e) {
+                console.error('保存单词数据失败:', e);
+                alert('保存失败，可能是存储空间不足或浏览器限制。');
+            }
         }
         
         // 显示保存成功提示
@@ -1142,8 +1275,6 @@
         function updateWordCount() {
             const count = words.length;
             wordCountElement.textContent = `${count}词`;
-            
-            // 更新筛选后的计数
             updateFilteredCount();
         }
         
@@ -1151,8 +1282,6 @@
         function updateFilteredCount() {
             let filteredWords = getFilteredWords();
             filteredCountElement.textContent = `${filteredWords.length}个术语`;
-            
-            // 更新分类练习统计
             updateCategoryPracticeCount();
         }
         
@@ -1169,10 +1298,8 @@
         // 根据练习模式获取单词列表
         function getPracticeWords() {
             if (currentPracticeMode === 'favorites') {
-                // 收藏复习模式：只返回已收藏的单词
                 return words.filter(word => word.favorite);
             } else {
-                // 分类练习模式：返回当前分类的单词
                 return getFilteredWords();
             }
         }
@@ -1184,7 +1311,6 @@
                               currentCategoryFilter === 'favorites' ? '已收藏' : currentCategoryFilter;
             categoryPracticeCount.textContent = `${categoryName}: ${filteredWords.length}个术语`;
             
-            // 如果没有单词，禁用练习按钮
             if (filteredWords.length === 0) {
                 practiceCategoryBtn.disabled = true;
             } else {
@@ -1194,14 +1320,11 @@
         
         // 更新练习统计信息
         function updatePracticeStats() {
-            // 总单词数
             totalWordsElement.textContent = words.length;
             
-            // 已练习单词数（practiceCount > 0）
             const practicedWords = words.filter(word => word.practiceCount && word.practiceCount > 0);
             practicedCountElement.textContent = practicedWords.length;
             
-            // 已收藏单词数
             const favoriteWords = words.filter(word => word.favorite);
             favoriteCountElement.textContent = favoriteWords.length;
         }
@@ -1221,7 +1344,6 @@
             emptyListMessage.style.display = 'none';
             
             filteredWords.forEach((word, index) => {
-                // 查找单词在原始数组中的索引
                 const originalIndex = words.findIndex(w => 
                     w.english === word.english && w.chinese === word.chinese
                 );
@@ -1251,9 +1373,8 @@
                     </div>
                 `;
                 
-                // 添加点击事件 - 点击单词项直接发音
+                // 触摸事件处理 - 兼容所有系统
                 wordItem.addEventListener('click', function(e) {
-                    // 如果点击的是按钮区域，不触发单词项点击事件
                     if (e.target.closest('.word-actions')) {
                         return;
                     }
@@ -1264,6 +1385,15 @@
                         selectWordForPractice(index);
                         speakEnglish();
                     }
+                });
+                
+                // 添加触摸反馈
+                wordItem.addEventListener('touchstart', function() {
+                    this.style.backgroundColor = '#f5f5f5';
+                });
+                
+                wordItem.addEventListener('touchend', function() {
+                    this.style.backgroundColor = '';
                 });
                 
                 wordListElement.appendChild(wordItem);
@@ -1327,7 +1457,6 @@
                 saveWords();
                 renderWordList();
                 
-                // 如果删除的是当前选中的单词，清空练习区域
                 if (currentWordIndex === index) {
                     currentWordIndex = -1;
                     clearPracticeDisplay();
@@ -1346,21 +1475,16 @@
                 saveWords();
                 renderWordList();
                 
-                // 如果当前正在练习这个单词，更新按钮状态
                 if (currentWordIndex === index) {
                     updateFavoriteButton();
                 }
                 
-                // 如果当前正在收藏复习模式，且取消收藏了当前单词，需要重新获取练习列表
                 if (isPracticing && currentPracticeMode === 'favorites' && currentWordIndex === index && !words[index].favorite) {
-                    // 重新获取练习单词列表
                     practiceWords = getPracticeWords();
                     if (practiceWords.length === 0) {
-                        // 如果没有收藏的单词了，结束练习
                         endPractice();
                         alert('已取消收藏所有单词，练习已结束。');
                     } else {
-                        // 调整练习索引
                         practiceIndex = Math.max(0, practiceIndex - 1);
                         const word = practiceWords[practiceIndex];
                         const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
@@ -1385,16 +1509,13 @@
                 return;
             }
             
-            // 检查是否已存在相同的单词（不区分系统还是用户）
             const existingIndex = words.findIndex(w => 
                 w.english.toLowerCase() === english.toLowerCase() && 
                 w.chinese === chinese
             );
             
             if (existingIndex >= 0) {
-                // 如果已存在，询问是否更新
                 if (confirm('这个术语已经存在，要更新它吗？')) {
-                    // 保留原有的属性，只更新内容
                     words[existingIndex] = {
                         ...words[existingIndex],
                         english,
@@ -1406,7 +1527,6 @@
                     renderWordList();
                 }
             } else {
-                // 添加新单词（用户自定义）
                 const newWord = {
                     english,
                     chinese,
@@ -1425,7 +1545,6 @@
                 renderWordList();
             }
             
-            // 清空输入框
             englishInput.value = '';
             chineseInput.value = '';
             exampleInput.value = '';
@@ -1439,29 +1558,20 @@
             currentWordIndex = index;
             const word = words[index];
             
-            // 更新练习区域显示
             practiceEnglish.textContent = word.english;
             practiceChinese.textContent = word.chinese;
-            practiceChinese.classList.remove('show'); // 隐藏中文
+            practiceChinese.classList.remove('show');
             practiceCategory.textContent = word.category;
             
-            // 更新当前分类显示
             if (currentPracticeMode === 'favorites') {
                 currentCategoryDisplay.textContent = '收藏复习';
             } else {
                 currentCategoryDisplay.textContent = word.category;
             }
             
-            // 更新收藏按钮状态
             updateFavoriteButton();
-            
-            // 启用练习按钮
             enablePracticeButtons();
-            
-            // 更新单词列表高亮
             renderWordList();
-            
-            // 更新练习进度
             updatePracticeProgress();
         }
         
@@ -1510,52 +1620,48 @@
         }
         
         // 开始练习
-function startPractice() {
-    if (isPracticing) {
-        return;
-    }
-    
-    let wordsToPractice = getPracticeWords();
-    
-    if (wordsToPractice.length === 0) {
-        if (currentPracticeMode === 'favorites') {
-            alert('您还没有收藏任何单词，请先收藏一些单词再开始复习！');
-        } else {
-            alert('当前分类没有术语可练习！');
+        function startPractice() {
+            if (isPracticing) return;
+            
+            let wordsToPractice = getPracticeWords();
+            
+            if (wordsToPractice.length === 0) {
+                if (currentPracticeMode === 'favorites') {
+                    alert('您还没有收藏任何单词，请先收藏一些单词再开始复习！');
+                } else {
+                    alert('当前分类没有术语可练习！');
+                }
+                return;
+            }
+            
+            practiceWords = [...wordsToPractice];
+            practiceIndex = 0;
+            isPracticing = true;
+            
+            startPracticeBtn.style.display = 'none';
+            endPracticeBtn.style.display = 'block';
+            practiceProgress.style.display = 'block';
+            
+            if (currentPracticeMode === 'favorites') {
+                favoritesReviewHint.style.display = 'block';
+            } else {
+                favoritesReviewHint.style.display = 'none';
+            }
+            
+            const firstWord = practiceWords[0];
+            const originalIndex = words.findIndex(w => w.english === firstWord.english && w.chinese === firstWord.chinese);
+            
+            if (originalIndex !== -1) {
+                selectWordForPractice(originalIndex);
+            }
+            
+            // 延迟发音，避免被浏览器阻止
+            setTimeout(() => {
+                if (isPracticing) {
+                    speakEnglish();
+                }
+            }, 500);
         }
-        return;
-    }
-    
-    // 创建练习单词列表
-    practiceWords = [...wordsToPractice];
-    practiceIndex = 0;
-    isPracticing = true;
-    
-    // 更新按钮状态
-    startPracticeBtn.style.display = 'none';
-    endPracticeBtn.style.display = 'block';
-    practiceProgress.style.display = 'block';
-    
-    // 显示/隐藏收藏复习提示
-    if (currentPracticeMode === 'favorites') {
-        favoritesReviewHint.style.display = 'block';
-    } else {
-        favoritesReviewHint.style.display = 'none';
-    }
-    
-    // 选择第一个单词开始练习
-    const firstWord = practiceWords[0];
-    const originalIndex = words.findIndex(w => w.english === firstWord.english && w.chinese === firstWord.chinese);
-    
-    if (originalIndex !== -1) {
-        selectWordForPractice(originalIndex);
-    }
-    
-    // 自动朗读第一个单词
-    setTimeout(() => {
-        speakEnglish();
-    }, 300);
-}
         
         // 结束练习
         function endPractice() {
@@ -1563,12 +1669,10 @@ function startPractice() {
             practiceWords = [];
             practiceIndex = 0;
             
-            // 更新按钮状态
             startPracticeBtn.style.display = 'block';
             endPracticeBtn.style.display = 'none';
             practiceProgress.style.display = 'none';
             
-            // 清空练习显示
             clearPracticeDisplay();
         }
         
@@ -1581,40 +1685,32 @@ function startPractice() {
         }
         
         // 上一个单词
-function prevWord() {
-    if (!isPracticing || practiceWords.length === 0) return;
-    
-    practiceIndex = (practiceIndex - 1 + practiceWords.length) % practiceWords.length;
-    
-    const word = practiceWords[practiceIndex];
-    const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
-    
-    if (originalIndex !== -1) {
-        selectWordForPractice(originalIndex);
-        // 自动朗读英文
-        setTimeout(() => {
-            speakEnglish();
-        }, 100);
-    }
-}
-
-// 下一个单词
-function nextWord() {
-    if (!isPracticing || practiceWords.length === 0) return;
-    
-    practiceIndex = (practiceIndex + 1) % practiceWords.length;
-    
-    const word = practiceWords[practiceIndex];
-    const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
-    
-    if (originalIndex !== -1) {
-        selectWordForPractice(originalIndex);
-        // 自动朗读英文
-        setTimeout(() => {
-            speakEnglish();
-        }, 100);
-    }
-}
+        function prevWord() {
+            if (!isPracticing || practiceWords.length === 0) return;
+            
+            practiceIndex = (practiceIndex - 1 + practiceWords.length) % practiceWords.length;
+            
+            const word = practiceWords[practiceIndex];
+            const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
+            
+            if (originalIndex !== -1) {
+                selectWordForPractice(originalIndex);
+            }
+        }
+        
+        // 下一个单词
+        function nextWord() {
+            if (!isPracticing || practiceWords.length === 0) return;
+            
+            practiceIndex = (practiceIndex + 1) % practiceWords.length;
+            
+            const word = practiceWords[practiceIndex];
+            const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
+            
+            if (originalIndex !== -1) {
+                selectWordForPractice(originalIndex);
+            }
+        }
         
         // 显示中文
         function showChinese() {
@@ -1630,20 +1726,17 @@ function nextWord() {
                 updateFavoriteButton();
                 updatePracticeStats();
                 
-                // 如果正在收藏复习模式，需要更新练习列表
                 if (isPracticing && currentPracticeMode === 'favorites') {
                     practiceWords = getPracticeWords();
                     if (practiceWords.length === 0) {
                         endPractice();
                         alert('已取消收藏所有单词，练习已结束。');
                     } else {
-                        // 重新查找当前单词在练习列表中的位置
                         const currentWord = words[currentWordIndex];
                         const newIndex = practiceWords.findIndex(w => w.english === currentWord.english && w.chinese === currentWord.chinese);
                         if (newIndex !== -1) {
                             practiceIndex = newIndex;
                         } else {
-                            // 如果当前单词被取消收藏，选择前一个单词
                             practiceIndex = Math.max(0, practiceIndex - 1);
                             const word = practiceWords[practiceIndex];
                             const originalIndex = words.findIndex(w => w.english === word.english && w.chinese === word.chinese);
@@ -1657,7 +1750,7 @@ function nextWord() {
             }
         }
         
-        // 发音函数
+        // 发音函数 - 兼容所有系统
         function speakText(text, lang, rate = 1.0) {
             if (!isSpeechSupported) {
                 alert('您的浏览器不支持语音合成功能，请使用最新版的Chrome、Edge或Safari浏览器。');
@@ -1667,62 +1760,84 @@ function nextWord() {
             // 停止当前正在进行的语音
             speechSynthesis.cancel();
             
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = lang;
-            utterance.rate = rate;
-            
-            // 根据语言选择合适的语音
-            if (lang.startsWith('zh') && voices.length > 0) {
-                // 中文发音：优先选择中文语音
-                const chineseVoice = voices.find(voice => voice.lang.startsWith('zh'));
-                if (chineseVoice) {
-                    utterance.voice = chineseVoice;
-                } else if (selectedVoice) {
-                    utterance.voice = selectedVoice;
+            // 等待一小段时间，确保语音被完全停止
+            setTimeout(() => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = rate;
+                
+                // 鸿蒙系统特殊处理
+                if (isHarmonyOS) {
+                    utterance.volume = 1.0;
+                    utterance.pitch = 1.0;
                 }
-            } else if (lang.startsWith('en') && voices.length > 0) {
-                // 英文发音：优先选择英文语音
-                const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
-                if (englishVoice) {
-                    utterance.voice = englishVoice;
-                } else if (selectedVoice) {
-                    utterance.voice = selectedVoice;
+                
+                // iOS系统特殊处理
+                if (isIOS) {
+                    utterance.volume = 0.8;
                 }
-            } else if (selectedVoice) {
-                utterance.voice = selectedVoice;
-            }
-            
-            // 设置发音单词索引
-            speakingWordIndex = currentWordIndex;
-            
-            // 更新单词列表显示
-            renderWordList();
-            
-            utterance.onend = function() {
-                speakingWordIndex = -1;
+                
+                // 选择语音
+                if (voices.length > 0) {
+                    if (lang.startsWith('zh')) {
+                        const chineseVoice = voices.find(voice => voice.lang.startsWith('zh'));
+                        if (chineseVoice) {
+                            utterance.voice = chineseVoice;
+                        } else if (selectedVoice) {
+                            utterance.voice = selectedVoice;
+                        }
+                    } else if (lang.startsWith('en')) {
+                        const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
+                        if (englishVoice) {
+                            utterance.voice = englishVoice;
+                        } else if (selectedVoice) {
+                            utterance.voice = selectedVoice;
+                        }
+                    } else if (selectedVoice) {
+                        utterance.voice = selectedVoice;
+                    }
+                }
+                
+                // 设置发音单词索引
+                speakingWordIndex = currentWordIndex;
                 renderWordList();
                 
-                // 增加练习次数
-                if (currentWordIndex >= 0) {
-                    words[currentWordIndex].practiceCount = (words[currentWordIndex].practiceCount || 0) + 1;
-                    saveWords();
-                    updatePracticeStats();
-                }
-            };
-            
-            utterance.onerror = function(event) {
-                console.error('语音合成错误:', event);
-                speakingWordIndex = -1;
-                renderWordList();
+                utterance.onstart = function() {
+                    console.log('语音合成开始');
+                };
                 
-                if (lang.startsWith('zh')) {
-                    alert('中文发音失败。建议使用最新版Chrome浏览器。');
-                } else {
-                    alert('发音失败，请检查语音设置。');
+                utterance.onend = function() {
+                    console.log('语音合成结束');
+                    speakingWordIndex = -1;
+                    renderWordList();
+                    
+                    if (currentWordIndex >= 0) {
+                        words[currentWordIndex].practiceCount = (words[currentWordIndex].practiceCount || 0) + 1;
+                        saveWords();
+                        updatePracticeStats();
+                    }
+                };
+                
+                utterance.onerror = function(event) {
+                    console.error('语音合成错误:', event);
+                    speakingWordIndex = -1;
+                    renderWordList();
+                    
+                    if (lang.startsWith('zh')) {
+                        alert('中文发音失败。建议使用最新版Chrome浏览器。');
+                    } else {
+                        alert('发音失败，请检查语音设置。');
+                    }
+                };
+                
+                // 尝试发音
+                try {
+                    speechSynthesis.speak(utterance);
+                } catch (error) {
+                    console.error('语音合成异常:', error);
+                    alert('发音失败: ' + error.message);
                 }
-            };
-            
-            speechSynthesis.speak(utterance);
+            }, 100);
         }
         
         // 说英语
@@ -1733,6 +1848,17 @@ function nextWord() {
             }
             
             const word = words[currentWordIndex];
+            
+            // 检查是否在用户交互后触发（部分浏览器要求）
+            if (isIOS || isHarmonyOS) {
+                // iOS和鸿蒙系统需要用户交互后才能发音
+                const userInteracted = document.body.getAttribute('data-user-interacted') === 'true';
+                if (!userInteracted) {
+                    alert('请先点击页面任意位置激活语音功能');
+                    return;
+                }
+            }
+            
             speakText(word.english, 'en-US', 1.0);
         }
         
@@ -1745,13 +1871,8 @@ function nextWord() {
                 return;
             }
             
-            // 设置练习模式为分类练习
             switchPracticeMode('category');
-            
-            // 切换到练习选项卡
             switchTab('practice-tab');
-            
-            // 开始练习
             startPractice();
         }
         
@@ -1759,7 +1880,6 @@ function nextWord() {
         function switchPracticeMode(mode) {
             currentPracticeMode = mode;
             
-            // 更新模式按钮状态
             modeButtons.forEach(button => {
                 if (button.getAttribute('data-mode') === mode) {
                     button.classList.add('active');
@@ -1768,14 +1888,12 @@ function nextWord() {
                 }
             });
             
-            // 更新开始练习按钮文本
             if (mode === 'favorites') {
                 startPracticeBtn.innerHTML = '<i class="fas fa-star"></i> 开始收藏复习';
             } else {
                 startPracticeBtn.innerHTML = '<i class="fas fa-play-circle"></i> 开始练习';
             }
             
-            // 清空当前练习显示
             if (!isPracticing) {
                 clearPracticeDisplay();
             }
@@ -1787,10 +1905,8 @@ function nextWord() {
                 return;
             }
             
-            // 1. 提取用户自定义术语
             const userWords = words.filter(word => !word.isSystem);
             
-            // 2. 从JSON文件加载最新的系统术语
             let newSystemTerms = [];
             try {
                 newSystemTerms = await loadTermsFromJSONFile();
@@ -1803,7 +1919,6 @@ function nextWord() {
                 return;
             }
             
-            // 3. 格式化系统术语
             const formattedSystemTerms = newSystemTerms.map(term => ({
                 ...term,
                 practiceCount: 0,
@@ -1814,32 +1929,25 @@ function nextWord() {
                 createdAt: null
             }));
             
-            // 4. 合并：系统术语 + 用户自定义术语
-            // 但需要处理重复：如果用户添加的术语与系统术语相同，使用用户的版本（保留练习记录和收藏状态）
             const mergedWords = [...formattedSystemTerms];
             
             userWords.forEach(userWord => {
-                // 检查是否与系统术语重复
                 const systemDuplicateIndex = mergedWords.findIndex(sysWord => 
                     sysWord.english.toLowerCase() === userWord.english.toLowerCase() &&
                     sysWord.chinese === userWord.chinese
                 );
                 
                 if (systemDuplicateIndex >= 0) {
-                    // 保留用户的版本，但标记为系统术语（因为含义相同）
-                    // 这样可以确保练习记录和收藏状态被保留
                     mergedWords[systemDuplicateIndex] = {
                         ...userWord,
-                        isSystem: true, // 标记为系统术语
-                        id: mergedWords[systemDuplicateIndex].id // 保留系统ID
+                        isSystem: true,
+                        id: mergedWords[systemDuplicateIndex].id
                     };
                 } else {
-                    // 完全不同的术语，直接添加
                     mergedWords.push(userWord);
                 }
             });
             
-            // 5. 保存合并后的数据
             words = mergedWords;
             saveWords();
             renderWordList();
@@ -1885,7 +1993,6 @@ function nextWord() {
                             throw new Error('文件格式不正确');
                         }
                         
-                        // 验证导入的数据结构
                         const validWords = importedWords.filter(word => 
                             word.english && word.chinese && word.category
                         );
@@ -1895,7 +2002,6 @@ function nextWord() {
                             return;
                         }
                         
-                        // 为导入的术语添加标识
                         const newUserWords = validWords.map(word => ({
                             ...word,
                             isSystem: false,
@@ -1903,7 +2009,6 @@ function nextWord() {
                             createdAt: word.createdAt || new Date().toISOString()
                         }));
                         
-                        // 添加到现有数据中，避免重复
                         let addedCount = 0;
                         newUserWords.forEach(newWord => {
                             const exists = words.some(existingWord => 
@@ -1968,7 +2073,6 @@ function nextWord() {
                 option.value = index;
                 option.textContent = `${voice.name} (${voice.lang})`;
                 
-                // 标记中文和英文语音
                 if (voice.lang.startsWith('zh')) {
                     option.textContent += ' [中文]';
                 } else if (voice.lang.startsWith('en')) {
@@ -1981,11 +2085,12 @@ function nextWord() {
             if (voices.length > 0) {
                 selectedVoice = voices[0];
             }
+            
+            console.log(`已加载 ${voices.length} 个语音`);
         }
         
         // 切换选项卡
         function switchTab(tabId) {
-            // 更新选项卡按钮状态
             tabButtons.forEach(button => {
                 if (button.getAttribute('data-tab') === tabId) {
                     button.classList.add('active');
@@ -1994,7 +2099,6 @@ function nextWord() {
                 }
             });
             
-            // 更新选项卡内容
             tabContents.forEach(content => {
                 if (content.id === tabId) {
                     content.classList.add('active');
@@ -2002,13 +2106,15 @@ function nextWord() {
                     content.classList.remove('active');
                 }
             });
+            
+            // 滚动到顶部
+            document.querySelector('.main-content').scrollTop = 0;
         }
         
         // 切换分类筛选
         function switchCategoryFilter(category) {
             currentCategoryFilter = category;
             
-            // 更新分类按钮状态
             categoryButtons.forEach(button => {
                 if (button.getAttribute('data-category') === category) {
                     button.classList.add('active');
@@ -2017,72 +2123,113 @@ function nextWord() {
                 }
             });
             
-            // 重新渲染单词列表
             renderWordList();
         }
         
+        // 添加触摸事件处理
+        function addTouchEvents() {
+            // 所有按钮添加触摸反馈
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.opacity = '0.8';
+                });
+                
+                button.addEventListener('touchend', function() {
+                    this.style.opacity = '';
+                });
+                
+                button.addEventListener('touchcancel', function() {
+                    this.style.opacity = '';
+                });
+            });
+            
+            // 用户交互标记
+            document.body.addEventListener('touchstart', function() {
+                document.body.setAttribute('data-user-interacted', 'true');
+            });
+            
+            document.body.addEventListener('click', function() {
+                document.body.setAttribute('data-user-interacted', 'true');
+            });
+        }
+        
         // 事件监听器
-        addWordBtn.addEventListener('click', addWord);
-        practiceCategoryBtn.addEventListener('click', practiceCurrentCategory);
-        speakEnglishBtn.addEventListener('click', speakEnglish);
-        prevWordBtn.addEventListener('click', prevWord);
-        nextWordBtn.addEventListener('click', nextWord);
-        showChineseBtn.addEventListener('click', showChinese);
-        startPracticeBtn.addEventListener('click', startPractice);
-        endPracticeBtn.addEventListener('click', endPractice);
-        toggleFavoriteBtn.addEventListener('click', toggleFavorite);
-        
-        // 管理功能按钮事件监听器
-        updateSystemBtn.addEventListener('click', updateSystemTerms);
-        exportUserBtn.addEventListener('click', exportUserWords);
-        importUserBtn.addEventListener('click', importUserWords);
-        resetSystemBtn.addEventListener('click', resetSystemTerms);
-        
-        // 允许按Enter键添加单词
-        englishInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addWord();
-            }
-        });
-        
-        chineseInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addWord();
-            }
-        });
-        
-        // 语音选择变化事件
-        voiceSelect.addEventListener('change', function() {
-            if (this.value === '') {
-                selectedVoice = null;
-            } else {
-                selectedVoice = voices[parseInt(this.value)];
-            }
-        });
-        
-        // 选项卡切换事件
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-tab');
-                switchTab(tabId);
+        function setupEventListeners() {
+            addWordBtn.addEventListener('click', addWord);
+            practiceCategoryBtn.addEventListener('click', practiceCurrentCategory);
+            speakEnglishBtn.addEventListener('click', speakEnglish);
+            prevWordBtn.addEventListener('click', prevWord);
+            nextWordBtn.addEventListener('click', nextWord);
+            showChineseBtn.addEventListener('click', showChinese);
+            startPracticeBtn.addEventListener('click', startPractice);
+            endPracticeBtn.addEventListener('click', endPractice);
+            toggleFavoriteBtn.addEventListener('click', toggleFavorite);
+            
+            // 管理功能按钮事件监听器
+            updateSystemBtn.addEventListener('click', updateSystemTerms);
+            exportUserBtn.addEventListener('click', exportUserWords);
+            importUserBtn.addEventListener('click', importUserWords);
+            resetSystemBtn.addEventListener('click', resetSystemTerms);
+            
+            // 允许按Enter键添加单词
+            englishInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addWord();
+                }
             });
-        });
-        
-        // 分类筛选按钮事件
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const category = this.getAttribute('data-category');
-                switchCategoryFilter(category);
+            
+            chineseInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addWord();
+                }
             });
-        });
-        
-        // 练习模式按钮事件
-        modeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const mode = this.getAttribute('data-mode');
-                switchPracticeMode(mode);
+            
+            // 语音选择变化事件
+            voiceSelect.addEventListener('change', function() {
+                if (this.value === '') {
+                    selectedVoice = null;
+                } else {
+                    selectedVoice = voices[parseInt(this.value)];
+                }
             });
-        });
+            
+            // 选项卡切换事件
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+            });
+            
+            // 分类筛选按钮事件
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    switchCategoryFilter(category);
+                });
+            });
+            
+            // 练习模式按钮事件
+            modeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const mode = this.getAttribute('data-mode');
+                    switchPracticeMode(mode);
+                });
+            });
+            
+            // 添加触摸事件
+            addTouchEvents();
+            
+            // 防止双击缩放
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(event) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        }
         
         // 当语音列表加载完成时
         if (speechSynthesis.onvoiceschanged !== undefined) {
@@ -2093,51 +2240,65 @@ function nextWord() {
         
         // 初始化应用
         async function initApp() {
+            if (isInitialized) return;
+            
+            console.log('正在初始化隆莱英语助手...');
+            
+            // 显示系统信息
+            if (isHarmonyOS) {
+                console.log('检测到鸿蒙系统，启用特殊适配');
+            }
+            
             // 检查语音支持
             checkSpeechSupport();
             
-            // 加载系统术语库（从JSON文件）
-            try {
-                pharmaceuticalTerms = await loadTermsFromJSONFile();
-                if (pharmaceuticalTerms.length === 0) {
-                    console.log('从JSON文件加载术语库失败，使用默认术语');
-                    loadDefaultTerms();
-                } else {
-                    console.log(`从JSON文件成功加载了 ${pharmaceuticalTerms.length} 个系统术语`);
-                }
-            } catch (error) {
-                console.error('初始化应用时加载术语库失败:', error);
-                loadDefaultTerms();
-            }
-            
             // 加载单词和语音
-            loadWords();
+            await loadWords();
             
-            // 加载语音列表（可能需要一些时间）
+            // 加载语音列表
             if (isSpeechSupported) {
-                // 立即尝试加载语音
                 loadVoices();
                 
-                // 如果语音列表为空，稍后再试（某些浏览器需要时间加载）
                 if (voices.length === 0) {
-                    setTimeout(loadVoices, 500);
+                    setTimeout(loadVoices, 1000);
                 }
             }
             
             // 初始禁用练习按钮
             disablePracticeButtons();
             
-            console.log('隆莱英语助手已初始化，已加载', words.length, '个术语');
+            // 设置事件监听器
+            setupEventListeners();
+            
+            // 标记已初始化
+            isInitialized = true;
+            
+            console.log('隆莱英语助手初始化完成，已加载', words.length, '个术语');
+            
+            // 显示欢迎信息
+            setTimeout(() => {
+                if (words.length === 0) {
+                    console.log('术语库为空，将加载默认术语');
+                }
+            }, 1000);
         }
         
         // 页面加载完成后初始化应用
-        document.addEventListener('DOMContentLoaded', initApp);
+        document.addEventListener('DOMContentLoaded', function() {
+            // 延迟初始化，确保DOM完全加载
+            setTimeout(initApp, 100);
+        });
         
         // 页面可见性变化时，停止语音
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 speechSynthesis.cancel();
             }
+        });
+        
+        // 处理页面卸载
+        window.addEventListener('beforeunload', function() {
+            speechSynthesis.cancel();
         });
         
         // 清除本地存储数据（调试用）
@@ -2147,6 +2308,19 @@ function nextWord() {
                 location.reload();
             }
         }
+        
+        // 导出函数供调试使用
+        window.appDebug = {
+            clearLocalStorage,
+            getWords: () => words,
+            getSystemInfo: () => ({
+                isHarmonyOS,
+                isIOS,
+                isAndroid,
+                isWechat,
+                isSpeechSupported
+            })
+        };
     </script>
 </body>
 </html>
